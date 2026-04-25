@@ -1,0 +1,13 @@
+{
+  "name": "Tooliyapa - Free Online PDF Tools",
+  "short_name": "Tooliyapa",
+  "description": "Free, fast and private online PDF tools. Merge, split, compress, rotate, organize and convert PDFs in your browser.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#dc2626",
+  "orientation": "portrait",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

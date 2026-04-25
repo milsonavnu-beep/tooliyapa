@@ -10,8 +10,20 @@ export const metadata = {
   description: 'Free, fast and private online PDF tools. Merge, split, compress, rotate, organize, watermark and convert PDFs entirely in your browser.',
   keywords: 'PDF tools, merge PDF, split PDF, compress PDF, rotate PDF, JPG to PDF, PDF to JPG, watermark PDF, page numbers, unlock PDF, free PDF online',
   authors: [{ name: 'Tooliyapa' }],
-  openGraph: { title: 'Tooliyapa - Free Online PDF Tools', description: 'Merge, split, compress and convert PDFs in your browser. Free and private.', type: 'website' },
-  icons: { icon: '/favicon.svg' },
+  manifest: '/manifest.json',
+  openGraph: {
+    title: 'Tooliyapa - Free Online PDF Tools',
+    description: 'Merge, split, compress and convert PDFs in your browser. Free and private.',
+    type: 'website',
+    siteName: 'Tooliyapa',
+  },
+  twitter: { card: 'summary_large_image', title: 'Tooliyapa - Free Online PDF Tools', description: 'Merge, split, compress and convert PDFs in your browser. Free and private.' },
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+    apple: '/favicon.svg',
+  },
 }
 
 export const viewport = { width: 'device-width', initialScale: 1, themeColor: '#dc2626' }
@@ -19,7 +31,6 @@ export const viewport = { width: 'device-width', initialScale: 1, themeColor: '#
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head><link rel="icon" href="/favicon.svg" type="image/svg+xml" /></head>
       <body className="min-h-screen font-sans antialiased bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className="min-h-screen flex flex-col bg-gradient-to-b from-white via-rose-50/40 to-white dark:from-gray-950 dark:via-gray-900 dark:to-gray-950">
