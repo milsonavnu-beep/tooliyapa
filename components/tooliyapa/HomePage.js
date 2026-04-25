@@ -1,31 +1,25 @@
 'use client'
 
 import { Card } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Combine, Minimize2, Shield, Zap, Lock } from 'lucide-react'
+import {
+  Combine, Minimize2, Scissors, RotateCw, Image as ImageIcon, FileImage,
+  Hash, Type, Layers, Unlock, Shield, Zap, Lock,
+} from 'lucide-react'
+
+const TOOLS = [
+  { id: 'merge',    title: 'Merge PDF',     desc: 'Combine multiple PDFs into one.',          icon: Combine,    color: 'red',    iconBg: 'bg-red-50',     iconColor: 'text-red-600' },
+  { id: 'split',    title: 'Split PDF',     desc: 'Extract pages or split into ranges.',       icon: Scissors,   color: 'amber',  iconBg: 'bg-amber-50',   iconColor: 'text-amber-600' },
+  { id: 'compress', title: 'Compress PDF',  desc: 'Reduce file size with quality control.',    icon: Minimize2,  color: 'emerald',iconBg: 'bg-emerald-50', iconColor: 'text-emerald-600' },
+  { id: 'rotate',   title: 'Rotate PDF',    desc: 'Rotate all or selected pages.',             icon: RotateCw,   color: 'blue',   iconBg: 'bg-blue-50',    iconColor: 'text-blue-600' },
+  { id: 'organize', title: 'Organize PDF',  desc: 'Delete or reorder pages.',                  icon: Layers,     color: 'violet', iconBg: 'bg-violet-50',  iconColor: 'text-violet-600' },
+  { id: 'jpg2pdf',  title: 'JPG to PDF',    desc: 'Convert images to a single PDF.',           icon: FileImage,  color: 'pink',   iconBg: 'bg-pink-50',    iconColor: 'text-pink-600' },
+  { id: 'pdf2jpg',  title: 'PDF to JPG',    desc: 'Export each page as a JPG image.',          icon: ImageIcon,  color: 'orange', iconBg: 'bg-orange-50',  iconColor: 'text-orange-600' },
+  { id: 'pagenum',  title: 'Page Numbers',  desc: 'Add page numbers to your PDF.',             icon: Hash,       color: 'cyan',   iconBg: 'bg-cyan-50',    iconColor: 'text-cyan-600' },
+  { id: 'watermark',title: 'Watermark',     desc: 'Add a text watermark to every page.',        icon: Type,       color: 'fuchsia',iconBg: 'bg-fuchsia-50', iconColor: 'text-fuchsia-600' },
+  { id: 'unlock',   title: 'Unlock PDF',    desc: 'Remove PDF passwords (when known).',        icon: Unlock,     color: 'slate',  iconBg: 'bg-slate-100',  iconColor: 'text-slate-700' },
+]
 
 export default function HomePage({ onSelectTool }) {
-  const tools = [
-    {
-      id: 'merge',
-      title: 'Merge PDF',
-      description: 'Combine multiple PDF files into a single document in the order you choose.',
-      icon: Combine,
-      gradient: 'from-red-500 to-rose-600',
-      bg: 'bg-red-50',
-      iconColor: 'text-red-600',
-    },
-    {
-      id: 'compress',
-      title: 'Compress PDF',
-      description: 'Reduce PDF file size while preserving the best possible quality.',
-      icon: Minimize2,
-      gradient: 'from-emerald-500 to-teal-600',
-      bg: 'bg-emerald-50',
-      iconColor: 'text-emerald-600',
-    },
-  ]
-
   return (
     <div className="container mx-auto px-4 py-12 sm:py-16">
       {/* Hero */}
@@ -40,34 +34,25 @@ export default function HomePage({ onSelectTool }) {
           </span>
         </h1>
         <p className="mt-5 text-lg text-gray-600">
-          Merge or compress PDFs right in your browser. No signup, no uploads, no waiting.
+          A complete suite of PDF tools — merge, split, compress, convert, rotate, organize and more. Right in your browser.
         </p>
       </div>
 
-      {/* Tool cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
-        {tools.map((tool) => {
+      {/* Tool grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 max-w-6xl mx-auto">
+        {TOOLS.map((tool) => {
           const Icon = tool.icon
           return (
             <Card
               key={tool.id}
               onClick={() => onSelectTool(tool.id)}
-              className="group cursor-pointer p-6 sm:p-8 border border-gray-200 hover:border-red-300 hover:shadow-xl transition-all duration-200 bg-white"
+              className="group cursor-pointer p-5 border border-gray-200 hover:border-red-300 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 bg-white"
             >
-              <div className={`w-14 h-14 rounded-2xl ${tool.bg} flex items-center justify-center mb-5 group-hover:scale-110 transition-transform`}>
-                <Icon className={`w-7 h-7 ${tool.iconColor}`} />
+              <div className={`w-12 h-12 rounded-xl ${tool.iconBg} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
+                <Icon className={`w-6 h-6 ${tool.iconColor}`} />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">{tool.title}</h3>
-              <p className="text-gray-600 text-sm leading-relaxed mb-5">{tool.description}</p>
-              <Button
-                className={`w-full bg-gradient-to-r ${tool.gradient} hover:opacity-90 text-white border-0`}
-                onClick={(e) => {
-                  e.stopPropagation()
-                  onSelectTool(tool.id)
-                }}
-              >
-                Open tool
-              </Button>
+              <h3 className="text-base font-bold text-gray-900 mb-1">{tool.title}</h3>
+              <p className="text-xs text-gray-500 leading-snug">{tool.desc}</p>
             </Card>
           )
         })}
@@ -76,9 +61,9 @@ export default function HomePage({ onSelectTool }) {
       {/* Features */}
       <div className="mt-20 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
         {[
-          { icon: Zap, title: 'Lightning Fast', desc: 'Processed in your browser — no upload delays.' },
+          { icon: Zap,    title: 'Lightning Fast',   desc: 'Processed in your browser — no upload delays.' },
           { icon: Shield, title: 'Private & Secure', desc: 'Your files never touch our servers. Ever.' },
-          { icon: Lock, title: '100% Free', desc: 'No accounts, no watermarks, no limits.' },
+          { icon: Lock,   title: '100% Free',        desc: 'No accounts, no watermarks, no limits.' },
         ].map((f, i) => {
           const Icon = f.icon
           return (
