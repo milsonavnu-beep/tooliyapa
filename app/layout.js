@@ -1,36 +1,34 @@
 import './globals.css'
 import { Toaster } from '@/components/ui/sonner'
+import { ThemeProvider } from 'next-themes'
+import Header from '@/components/tooliyapa/Header'
+import Footer from '@/components/tooliyapa/Footer'
 
 export const metadata = {
-  title: 'Tooliyapa - Free Online PDF Tools | Merge & Compress PDF',
-  description: 'Tooliyapa offers free, fast, and secure online PDF tools. Merge multiple PDFs or compress PDF size — all processed in your browser. No upload to server.',
-  keywords: 'PDF merge, PDF compress, free PDF tools, online PDF, Tooliyapa, merge PDF online, compress PDF online',
+  metadataBase: new URL('https://swift-pdf-tools.preview.emergentagent.com'),
+  title: { default: 'Tooliyapa - Free Online PDF Tools', template: '%s | Tooliyapa' },
+  description: 'Free, fast and private online PDF tools. Merge, split, compress, rotate, organize, watermark and convert PDFs entirely in your browser.',
+  keywords: 'PDF tools, merge PDF, split PDF, compress PDF, rotate PDF, JPG to PDF, PDF to JPG, watermark PDF, page numbers, unlock PDF, free PDF online',
   authors: [{ name: 'Tooliyapa' }],
-  openGraph: {
-    title: 'Tooliyapa - Free Online PDF Tools',
-    description: 'Merge and compress PDFs in your browser. Fast, free, and private.',
-    type: 'website',
-  },
-  icons: {
-    icon: '/favicon.svg',
-  },
+  openGraph: { title: 'Tooliyapa - Free Online PDF Tools', description: 'Merge, split, compress and convert PDFs in your browser. Free and private.', type: 'website' },
+  icons: { icon: '/favicon.svg' },
 }
 
-export const viewport = {
-  width: 'device-width',
-  initialScale: 1,
-  themeColor: '#dc2626',
-}
+export const viewport = { width: 'device-width', initialScale: 1, themeColor: '#dc2626' }
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-      </head>
-      <body className="min-h-screen bg-background font-sans antialiased">
-        {children}
-        <Toaster position="top-center" richColors />
+    <html lang="en" suppressHydrationWarning>
+      <head><link rel="icon" href="/favicon.svg" type="image/svg+xml" /></head>
+      <body className="min-h-screen font-sans antialiased bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100">
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <div className="min-h-screen flex flex-col bg-gradient-to-b from-white via-rose-50/40 to-white dark:from-gray-950 dark:via-gray-900 dark:to-gray-950">
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </div>
+          <Toaster position="top-center" richColors />
+        </ThemeProvider>
       </body>
     </html>
   )
