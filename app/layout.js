@@ -31,6 +31,14 @@ export const viewport = { width: 'device-width', initialScale: 1, themeColor: '#
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      {/* ✅ Google AdSense Script */}
+      <Script
+        async
+        strategy="afterInteractive"
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5475600467474553"
+        crossOrigin="anonymous"
+      />
+
       <body className="min-h-screen font-sans antialiased bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className="min-h-screen flex flex-col bg-gradient-to-b from-white via-rose-50/40 to-white dark:from-gray-950 dark:via-gray-900 dark:to-gray-950">
