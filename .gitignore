@@ -28,6 +28,12 @@ next-env.d.ts
 # Production builds
 /build
 dist/
+
+# Local env files (should NEVER be committed)
+.env
+.env.local
+.env*.local
+!.env.example
 dist
 
 # Environment files (comprehensive coverage)
