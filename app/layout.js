@@ -1,4 +1,5 @@
 import './globals.css'
+import Script from 'next/script'
 import { Toaster } from '@/components/ui/sonner'
 import { ThemeProvider } from 'next-themes'
 import Header from '@/components/tooliyapa/Header'
