@@ -1,6 +1,6 @@
 'use client'
 
-import { useId } from 'react'
+import { useEffect, useId, useState } from 'react'
 
 /**
  * Aesthetic Lottie-style isometric dice logo.
@@ -10,17 +10,41 @@ import { useId } from 'react'
 export default function DiceLogo({ size = 36, className = '', title = 'Tooliyapa' }) {
   const s = typeof size === 'number' ? size : 36
   const uid = useId().replace(/:/g, '')
+  const [open, setOpen] = useState(false)
+
+  useEffect(() => {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (reduced) return undefined
+
+    // Cycle: closed 6.5s → opening → hold 2s → closing → repeat (≈10s cadence)
+    let closeTimer
+    const openTimer = setInterval(() => {
+      setOpen(true)
+      closeTimer = setTimeout(() => setOpen(false), 2200)
+    }, 10000)
+
+    // First reveal a bit after mount so the closed form is seen first
+    const first = setTimeout(() => {
+      setOpen(true)
+      closeTimer = setTimeout(() => setOpen(false), 2200)
+    }, 6500)
+
+    return () => {
+      clearInterval(openTimer)
+      clearTimeout(first)
+      clearTimeout(closeTimer)
+    }
+  }, [])
 
   return (
     <div
-      className={`dice-logo ${className}`}
+      className={`dice-logo ${open ? 'is-open' : ''} ${className}`}
       style={{ width: s, height: s, ['--dice-size']: `${s}px` }}
       role="img"
       aria-label={title}
     >
       <div className="dice-logo__scene">
         <div className="dice-logo__dice">
-          {/* Front face: anchored on shell, lid swings on bottom edge */}
           <div className="dice-logo__anchor dice-logo__anchor--front">
             <div className="dice-logo__lid dice-logo__lid--front">
               <div className="dice-logo__face dice-logo__face--front">
@@ -29,7 +53,6 @@ export default function DiceLogo({ size = 36, className = '', title = 'Tooliyapa
             </div>
           </div>
 
-          {/* Right face */}
           <div className="dice-logo__anchor dice-logo__anchor--right">
             <div className="dice-logo__lid dice-logo__lid--right">
               <div className="dice-logo__face dice-logo__face--right">
@@ -38,7 +61,6 @@ export default function DiceLogo({ size = 36, className = '', title = 'Tooliyapa
             </div>
           </div>
 
-          {/* Top face */}
           <div className="dice-logo__anchor dice-logo__anchor--top">
             <div className="dice-logo__lid dice-logo__lid--top">
               <div className="dice-logo__face dice-logo__face--top">
@@ -47,7 +69,7 @@ export default function DiceLogo({ size = 36, className = '', title = 'Tooliyapa
             </div>
           </div>
 
-          <div className="dice-logo__inner">
+          <div className="dice-logo__inner" aria-hidden={!open}>
             <div className="dice-logo__icon dice-logo__icon--pdf" title="PDF">
               <FileBadge color="#E53935" letter="P" uid={`${uid}-p`} />
             </div>
