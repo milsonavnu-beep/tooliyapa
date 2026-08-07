@@ -1,3 +1,13 @@
 import JpgToPdfTool from '@/components/tooliyapa/JpgToPdfTool'
-export const metadata = { title: 'JPG to PDF — Convert Images to PDF', description: 'Convert JPG, JPEG and PNG images into a single PDF document. Free and instant.', alternates: { canonical: '/jpg-to-pdf' } }
-export default function Page() { return <JpgToPdfTool /> }
+import ToolPageLayout from '@/components/tooliyapa/ToolPageLayout'
+import { buildToolMetadata } from '@/lib/tools/metadata'
+
+export const metadata = buildToolMetadata('jpg-to-pdf')
+
+export default function Page() {
+  return (
+    <ToolPageLayout toolId="jpg-to-pdf">
+      <JpgToPdfTool />
+    </ToolPageLayout>
+  )
+}

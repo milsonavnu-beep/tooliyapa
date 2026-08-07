@@ -1,23 +1,11 @@
+import { listSitemapPaths } from '@/lib/tools/metadata'
 import { SITE_URL } from '@/lib/site'
 
 export default function sitemap() {
-  const routes = [
-    '',
-    '/merge-pdf',
-    '/split-pdf',
-    '/compress-pdf',
-    '/rotate-pdf',
-    '/organize-pdf',
-    '/jpg-to-pdf',
-    '/pdf-to-jpg',
-    '/page-numbers',
-    '/watermark',
-    '/unlock-pdf',
-  ]
-  return routes.map((r) => ({
-    url: `${SITE_URL}${r}`,
+  return listSitemapPaths().map((path) => ({
+    url: path === '/' ? SITE_URL : `${SITE_URL}${path}`,
     lastModified: new Date(),
     changeFrequency: 'monthly',
-    priority: r === '' ? 1.0 : 0.8,
+    priority: path === '/' ? 1.0 : path === '/pdf' ? 0.9 : 0.8,
   }))
 }

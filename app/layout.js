@@ -18,7 +18,7 @@ export const metadata = {
     description: 'Merge, split, compress and convert PDFs in your browser. Files are not uploaded to Tooliyapa servers.',
     type: 'website',
     siteName: 'Tooliyapa',
-    url: SITE_URL,
+    // Per-page metadata (homepage, /pdf, tools) sets openGraph.url explicitly.
   },
   twitter: {
     card: 'summary_large_image',
