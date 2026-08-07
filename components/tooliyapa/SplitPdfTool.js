@@ -36,7 +36,8 @@ export default function SplitPdfTool() {
       setPageCount(total)
       // Render thumbnails using pdfjs
       const pdfjs = await import('pdfjs-dist/build/pdf.mjs')
-      pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.mjs`
+      const { configurePdfJsWorker } = await import('@/lib/pdfjs-worker')
+      configurePdfJsWorker(pdfjs)
       const doc = await pdfjs.getDocument({ data: buf }).promise
       const out = []
       for (let i = 1; i <= total; i++) {
@@ -111,7 +112,7 @@ export default function SplitPdfTool() {
           <div className="flex items-center gap-3 p-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50/60 dark:bg-gray-800/60">
             <FileText className="w-5 h-5 text-amber-600 shrink-0" />
             <div className="flex-1 min-w-0"><p className="text-sm font-medium truncate">{file.name}</p><p className="text-xs text-gray-500 dark:text-gray-400">{formatBytes(file.size)} · {pageCount} pages</p></div>
-            <Button variant="ghost" size="icon" className="h-8 w-8 text-red-600" onClick={reset}><X className="w-4 h-4" /></Button>
+            <Button variant="ghost" size="icon" className="h-8 w-8 text-red-600" onClick={reset} aria-label="Remove file"><X className="w-4 h-4" aria-hidden="true" /></Button>
           </div>
           {loadingThumbs && (<div className="mt-5"><Progress value={thumbProgress} className="h-2" /><p className="text-xs text-gray-500 mt-2 text-center">Loading thumbnails… {thumbProgress}%</p></div>)}
           {!result && (

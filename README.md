@@ -2,7 +2,7 @@
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/YOUR_GITHUB_USERNAME/tooliyapa)
 
-> **Tooliyapa** is a fast, privacy-first web app with 10+ PDF tools — merge, split, compress, rotate, organize, watermark and convert PDFs entirely in your browser. **Files never leave your device.**
+> **Tooliyapa** is a fast, privacy-first web app with 10+ PDF tools — merge, split, compress, rotate, organize, watermark and convert PDFs entirely in your browser. **Your files are not uploaded to Tooliyapa servers.**
 
 ![Tooliyapa Hero](https://img.shields.io/badge/Next.js-14-black?style=flat-square&logo=next.js) ![Tailwind](https://img.shields.io/badge/Tailwind-3-38bdf8?style=flat-square&logo=tailwindcss) ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
@@ -12,22 +12,22 @@
 |---|---|
 | 🔗 **Merge PDF** | Combine multiple PDFs in any order (drag-to-reorder) |
 | ✂️ **Split PDF** | Click thumbnails to extract pages, or split every page |
-| 📦 **Compress PDF** | 3 quality levels with before/after size comparison |
+| 📦 **Compress PDF** | Lossless optimize (object streams / metadata strip; may not shrink image-heavy PDFs) |
 | 🔄 **Rotate PDF** | Rotate all or selected pages by 90/180/270° |
 | 🗂️ **Organize PDF** | Drag-and-drop page thumbnails to reorder, rotate or delete |
 | 🖼️ **JPG → PDF** | Convert JPG/PNG images to a single PDF |
 | 📷 **PDF → JPG** | Render every page as a high-quality JPG image |
 | #️⃣ **Page Numbers** | Add numbers in any position with multiple formats |
 | 📝 **Watermark** | Add text watermark with opacity/rotation/size controls |
-| 🔓 **Unlock PDF** | Remove owner-password restrictions |
+| 🔓 **Remove Restrictions** | Strip owner-permission restrictions (not open-password decryption) |
 
 ### Other Highlights
 - 🌙 **Dark mode** with system preference detection + localStorage persistence
 - 📱 **Mobile-first** responsive design with hamburger menu
 - 🚀 **PWA-ready** — installable as a standalone app (manifest.json)
 - 🔍 **SEO-optimized** — separate URL per tool, sitemap.xml, robots.txt
-- ⚡ **Fast** — ~316 KB first-load JS, all routes pre-rendered
-- 🔒 **Privacy-first** — 100% client-side, no uploads, no tracking, no accounts
+- ⚡ **Fast** — client-side processing, all routes pre-rendered
+- 🔒 **Privacy-first** — PDF files are processed in your browser and are not uploaded to Tooliyapa servers (the site may still load advertising scripts such as Google AdSense)
 
 ## 🛠 Tech Stack
 
@@ -138,4 +138,4 @@ MIT © Tooliyapa — see [LICENSE](LICENSE).
 
 ## 🙏 Credits
 
-Built with love using open-source libraries. Inspired by [iLovePDF](https://www.ilovepdf.com/) but with a stronger privacy commitment — your files genuinely never leave your device.
+Built with love using open-source libraries. Inspired by [iLovePDF](https://www.ilovepdf.com/) with a focus on browser-side file processing — your PDFs are not uploaded to Tooliyapa servers.

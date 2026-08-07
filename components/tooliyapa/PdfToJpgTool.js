@@ -30,8 +30,8 @@ export default function PdfToJpgTool({ onBack }) {
       // Lazy load pdfjs in the browser only
       const pdfjs = await import('pdfjs-dist/build/pdf.mjs')
       // Use the CDN worker that matches our installed pdfjs-dist version (4.0.379)
-      pdfjs.GlobalWorkerOptions.workerSrc =
-        `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.mjs`
+      const { configurePdfJsWorker } = await import('@/lib/pdfjs-worker')
+      configurePdfJsWorker(pdfjs)
 
       const buf = await file.arrayBuffer()
       const doc = await pdfjs.getDocument({ data: buf }).promise
@@ -72,7 +72,7 @@ export default function PdfToJpgTool({ onBack }) {
           <div className="flex items-center gap-3 p-3 rounded-lg border bg-gray-50/60">
             <FileText className="w-5 h-5 text-orange-600" />
             <div className="flex-1 min-w-0"><p className="text-sm font-medium truncate">{file.name}</p><p className="text-xs text-gray-500">{formatBytes(file.size)}</p></div>
-            <Button variant="ghost" size="icon" className="h-8 w-8 text-red-600" onClick={reset}><X className="w-4 h-4" /></Button>
+            <Button variant="ghost" size="icon" className="h-8 w-8 text-red-600" onClick={reset} aria-label="Remove file"><X className="w-4 h-4" aria-hidden="true" /></Button>
           </div>
           {processing && (<div className="mt-5"><Progress value={progress} className="h-2" /><p className="text-xs text-gray-500 mt-2 text-center">Rendering pages… {progress}%</p></div>)}
           {pages.length > 0 && (

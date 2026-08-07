@@ -12,7 +12,7 @@ export default function Footer() {
           </span>
         </Link>
         <p>
-          &copy; {new Date().getFullYear()} Tooliyapa. All PDF processing happens in your browser — your files never leave your device.
+          &copy; {new Date().getFullYear()} Tooliyapa. PDF tools run in your browser — files are not uploaded to Tooliyapa servers.
         </p>
       </div>
     </footer>

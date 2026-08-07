@@ -83,7 +83,8 @@ export default function OrganizePdfTool() {
       setPages(initial)
       // Render thumbnails using pdfjs
       const pdfjs = await import('pdfjs-dist/build/pdf.mjs')
-      pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.mjs`
+      const { configurePdfJsWorker } = await import('@/lib/pdfjs-worker')
+      configurePdfJsWorker(pdfjs)
       const doc = await pdfjs.getDocument({ data: buf }).promise
       for (let i = 0; i < total; i++) {
         const p = await doc.getPage(i + 1)
@@ -159,7 +160,7 @@ export default function OrganizePdfTool() {
               <p className="text-sm font-medium truncate">{file.name}</p>
               <p className="text-xs text-gray-500 dark:text-gray-400">{formatBytes(file.size)} · {pages.length} pages</p>
             </div>
-            <Button variant="ghost" size="icon" className="h-8 w-8 text-red-600" onClick={reset}><X className="w-4 h-4" /></Button>
+            <Button variant="ghost" size="icon" className="h-8 w-8 text-red-600" onClick={reset} aria-label="Remove file"><X className="w-4 h-4" aria-hidden="true" /></Button>
           </div>
 
           {loading && (<div className="mt-5"><Progress value={progress} className="h-2" /><p className="text-xs text-gray-500 mt-2 text-center">Loading thumbnails… {progress}%</p></div>)}

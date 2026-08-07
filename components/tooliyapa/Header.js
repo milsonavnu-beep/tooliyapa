@@ -18,7 +18,7 @@ const NAV = [
   { href: '/pdf-to-jpg',   label: 'PDF→JPG' },
   { href: '/page-numbers', label: 'Page #' },
   { href: '/watermark',    label: 'Watermark' },
-  { href: '/unlock-pdf',   label: 'Unlock' },
+  { href: '/unlock-pdf',   label: 'Restrictions' },
 ]
 
 function ThemeToggle() {
@@ -42,6 +42,12 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-gray-200/70 dark:border-gray-800 bg-white/80 dark:bg-gray-950/80 backdrop-blur-md">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:px-3 focus:py-2 focus:rounded-md focus:shadow focus:text-sm focus:font-medium"
+      >
+        Skip to main content
+      </a>
       <div className="container mx-auto px-4 h-16 flex items-center justify-between gap-2">
         <Link href="/" className="flex items-center gap-2.5 group shrink-0" aria-label="Tooliyapa Home">
           <DiceLogo size={40} className="group-hover:scale-105 transition-transform" />

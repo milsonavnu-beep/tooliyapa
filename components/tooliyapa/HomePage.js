@@ -11,14 +11,14 @@ import DiceLogo from '@/components/tooliyapa/DiceLogo'
 const TOOLS = [
   { href: '/merge-pdf',     title: 'Merge PDF',    desc: 'Combine multiple PDFs into one.',         icon: Combine,   iconBg: 'bg-red-50 dark:bg-red-950/40',         iconColor: 'text-red-600' },
   { href: '/split-pdf',     title: 'Split PDF',    desc: 'Extract pages or split into ranges.',     icon: Scissors,  iconBg: 'bg-amber-50 dark:bg-amber-950/40',     iconColor: 'text-amber-600' },
-  { href: '/compress-pdf',  title: 'Compress PDF', desc: 'Reduce file size with quality control.',  icon: Minimize2, iconBg: 'bg-emerald-50 dark:bg-emerald-950/40', iconColor: 'text-emerald-600' },
+  { href: '/compress-pdf',  title: 'Compress PDF', desc: 'Lossless optimize (may not shrink images).', icon: Minimize2, iconBg: 'bg-emerald-50 dark:bg-emerald-950/40', iconColor: 'text-emerald-600' },
   { href: '/rotate-pdf',    title: 'Rotate PDF',   desc: 'Rotate all or selected pages.',           icon: RotateCw,  iconBg: 'bg-blue-50 dark:bg-blue-950/40',       iconColor: 'text-blue-600' },
   { href: '/organize-pdf',  title: 'Organize PDF', desc: 'Drag to reorder or delete pages.',        icon: Layers,    iconBg: 'bg-violet-50 dark:bg-violet-950/40',   iconColor: 'text-violet-600' },
-  { href: '/jpg-to-pdf',    title: 'JPG to PDF',   desc: 'Convert images to a single PDF.',         icon: FileImage, iconBg: 'bg-pink-50 dark:bg-pink-950/40',       iconColor: 'text-pink-600' },
+  { href: '/jpg-to-pdf',    title: 'JPG to PDF',   desc: 'Convert JPG/PNG images to a single PDF.', icon: FileImage, iconBg: 'bg-pink-50 dark:bg-pink-950/40',       iconColor: 'text-pink-600' },
   { href: '/pdf-to-jpg',    title: 'PDF to JPG',   desc: 'Export each page as a JPG image.',        icon: ImageIcon, iconBg: 'bg-orange-50 dark:bg-orange-950/40',   iconColor: 'text-orange-600' },
   { href: '/page-numbers',  title: 'Page Numbers', desc: 'Add page numbers to your PDF.',           icon: Hash,      iconBg: 'bg-cyan-50 dark:bg-cyan-950/40',       iconColor: 'text-cyan-600' },
   { href: '/watermark',     title: 'Watermark',    desc: 'Add a text watermark to every page.',     icon: Type,      iconBg: 'bg-fuchsia-50 dark:bg-fuchsia-950/40', iconColor: 'text-fuchsia-600' },
-  { href: '/unlock-pdf',    title: 'Unlock PDF',   desc: 'Remove PDF passwords (when known).',      icon: Unlock,    iconBg: 'bg-slate-100 dark:bg-slate-800',       iconColor: 'text-slate-700 dark:text-slate-300' },
+  { href: '/unlock-pdf',    title: 'Remove Restrictions', desc: 'Strip owner restrictions (not open-passwords).', icon: Unlock, iconBg: 'bg-slate-100 dark:bg-slate-800', iconColor: 'text-slate-700 dark:text-slate-300' },
 ]
 
 export default function HomePage() {
@@ -29,7 +29,7 @@ export default function HomePage() {
           <DiceLogo size={88} />
         </div>
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 dark:bg-red-950/40 border border-red-100 dark:border-red-900 text-red-700 dark:text-red-400 text-xs font-medium mb-5">
-          <Lock className="w-3 h-3" /> 100% browser-based · Your files never leave your device
+          <Lock className="w-3 h-3" aria-hidden="true" /> Files processed in your browser · not uploaded to Tooliyapa servers
         </div>
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-gray-900 dark:text-gray-50">
           Every PDF tool you need,
@@ -56,7 +56,7 @@ export default function HomePage() {
       <div className="mt-20 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
         {[
           { icon: Zap, title: 'Lightning Fast', desc: 'Processed in your browser — no upload delays.' },
-          { icon: Shield, title: 'Private & Secure', desc: 'Your files never touch our servers. Ever.' },
+          { icon: Shield, title: 'Files stay local', desc: 'Your PDFs are not uploaded to Tooliyapa servers.' },
           { icon: Lock, title: '100% Free', desc: 'No accounts, no watermarks, no limits.' },
         ].map((f, i) => {
           const Icon = f.icon

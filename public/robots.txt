@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://swift-pdf-tools.preview.emergentagent.com/sitemap.xml
+
+Sitemap: https://tooliyapa.com/sitemap.xml

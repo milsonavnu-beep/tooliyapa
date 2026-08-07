@@ -66,7 +66,7 @@ export default function WatermarkTool({ onBack }) {
           <div className="flex items-center gap-3 p-3 rounded-lg border bg-gray-50/60">
             <FileText className="w-5 h-5 text-fuchsia-600" />
             <div className="flex-1 min-w-0"><p className="text-sm font-medium truncate">{file.name}</p><p className="text-xs text-gray-500">{formatBytes(file.size)}</p></div>
-            <Button variant="ghost" size="icon" className="h-8 w-8 text-red-600" onClick={reset}><X className="w-4 h-4" /></Button>
+            <Button variant="ghost" size="icon" className="h-8 w-8 text-red-600" onClick={reset} aria-label="Remove file"><X className="w-4 h-4" aria-hidden="true" /></Button>
           </div>
           {!result && (
             <div className="mt-5 space-y-4">

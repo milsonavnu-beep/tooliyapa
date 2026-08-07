@@ -28,7 +28,7 @@ function SortableFile({ id, file, idx, onRemove }) {
         <p className="text-sm font-medium text-gray-900 dark:text-gray-100 truncate">{file.name}</p>
         <p className="text-xs text-gray-500 dark:text-gray-400">{formatBytes(file.size)}</p>
       </div>
-      <Button variant="ghost" size="icon" className="h-8 w-8 text-red-600" onClick={onRemove}><X className="w-4 h-4" /></Button>
+      <Button variant="ghost" size="icon" className="h-8 w-8 text-red-600" onClick={onRemove} aria-label="Remove file"><X className="w-4 h-4" aria-hidden="true" /></Button>
     </li>
   )
 }
