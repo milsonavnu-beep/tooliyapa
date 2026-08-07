@@ -89,37 +89,22 @@ cp .env.example .env.local   # optional
 tooliyapa/
 ├── app/
 │   ├── page.js                  # Homepage
+│   ├── pdf/page.js              # PDF Tools category page
 │   ├── layout.js                # Root layout (theme provider, metadata)
-│   ├── globals.css              # Global styles
-│   ├── sitemap.js               # Auto-generated sitemap.xml
-│   ├── merge-pdf/page.js        # Each tool has its own route
-│   ├── split-pdf/page.js
-│   ├── compress-pdf/page.js
-│   ├── ... (10 tools total)
-│   └── api/[[...path]]/route.js # Trivial status endpoint
-├── components/
-│   ├── tooliyapa/
-│   │   ├── Header.js            # Navigation + theme toggle + mobile menu
-│   │   ├── Footer.js
-│   │   ├── HomePage.js          # Tool grid
-│   │   ├── ToolShell.js         # Shared tool page wrapper
-│   │   ├── MergePdfTool.js      # One file per tool
-│   │   └── ... (10 tools)
-│   └── ui/                      # shadcn/ui components
+│   ├── sitemap.js               # Registry-driven sitemap.xml
+│   ├── merge-pdf/page.js        # Thin route per tool (metadata + layout)
+│   └── ... (10 tools total)
+├── components/tooliyapa/        # Tool engines + shared platform UI
 ├── lib/
-│   └── pdf-utils.js             # downloadBlob, formatBytes, parsePageRanges
-├── public/
-│   ├── favicon.svg              # Branded SVG favicon
-│   ├── manifest.json            # PWA manifest
-│   └── robots.txt
-├── .gitignore
-├── .env.example
-├── LICENSE
-├── next.config.js
-├── package.json
-├── tailwind.config.js
-└── vercel.json
+│   ├── tools/                   # Registry, categories, search, metadata, JSON-LD
+│   ├── pdf-utils.js
+│   └── ...
+├── docs/ADDING_A_TOOL.md        # How to register a future utility
+├── tests/                       # Vitest (PDF + platform)
+└── public/
 ```
+
+See [docs/ADDING_A_TOOL.md](docs/ADDING_A_TOOL.md) for the registry-first workflow.
 
 ## 🚫 Tools NOT included (require server-side)
 

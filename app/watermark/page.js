@@ -1,3 +1,13 @@
 import WatermarkTool from '@/components/tooliyapa/WatermarkTool'
-export const metadata = { title: 'Watermark PDF — Add Text Watermark', description: 'Add a custom text watermark to every page of your PDF. Adjust opacity, size and rotation.', alternates: { canonical: '/watermark' } }
-export default function Page() { return <WatermarkTool /> }
+import ToolPageLayout from '@/components/tooliyapa/ToolPageLayout'
+import { buildToolMetadata } from '@/lib/tools/metadata'
+
+export const metadata = buildToolMetadata('watermark')
+
+export default function Page() {
+  return (
+    <ToolPageLayout toolId="watermark">
+      <WatermarkTool />
+    </ToolPageLayout>
+  )
+}

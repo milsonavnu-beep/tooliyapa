@@ -1,7 +1,13 @@
 import UnlockPdfTool from '@/components/tooliyapa/UnlockPdfTool'
-export const metadata = {
-  title: 'Remove PDF Restrictions — Owner Permissions',
-  description: 'Remove common owner-permission restrictions from PDFs you can already open. Does not decrypt open-password encryption. Runs in your browser.',
-  alternates: { canonical: '/unlock-pdf' },
+import ToolPageLayout from '@/components/tooliyapa/ToolPageLayout'
+import { buildToolMetadata } from '@/lib/tools/metadata'
+
+export const metadata = buildToolMetadata('unlock-pdf')
+
+export default function Page() {
+  return (
+    <ToolPageLayout toolId="unlock-pdf">
+      <UnlockPdfTool />
+    </ToolPageLayout>
+  )
 }
-export default function Page() { return <UnlockPdfTool /> }
