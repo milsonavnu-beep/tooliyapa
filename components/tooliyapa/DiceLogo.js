@@ -13,26 +13,37 @@ export default function DiceLogo({ size = 36, className = '', title = 'Tooliyapa
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (reduced) return undefined
+    let cancelled = false
+    let openHandle
+    let closeHandle
+    let cycleHandle
 
-    // Cycle: closed 6.5s → opening → hold 2s → closing → repeat (≈10s cadence)
-    let closeTimer
-    const openTimer = setInterval(() => {
-      setOpen(true)
-      closeTimer = setTimeout(() => setOpen(false), 2200)
-    }, 10000)
+    const close = () => {
+      if (cancelled) return
+      setOpen(false)
+    }
 
-    // First reveal a bit after mount so the closed form is seen first
-    const first = setTimeout(() => {
+    const openDice = () => {
+      if (cancelled) return
       setOpen(true)
-      closeTimer = setTimeout(() => setOpen(false), 2200)
-    }, 6500)
+      closeHandle = setTimeout(close, 2400)
+    }
+
+    // First open after 6.5s, then every 10s from each open
+    const scheduleCycle = (delay) => {
+      cycleHandle = setTimeout(() => {
+        openDice()
+        scheduleCycle(10000)
+      }, delay)
+    }
+
+    scheduleCycle(6500)
 
     return () => {
-      clearInterval(openTimer)
-      clearTimeout(first)
-      clearTimeout(closeTimer)
+      cancelled = true
+      clearTimeout(openHandle)
+      clearTimeout(closeHandle)
+      clearTimeout(cycleHandle)
     }
   }, [])
 
@@ -68,17 +79,18 @@ export default function DiceLogo({ size = 36, className = '', title = 'Tooliyapa
               </div>
             </div>
           </div>
+        </div>
 
-          <div className="dice-logo__inner" aria-hidden={!open}>
-            <div className="dice-logo__icon dice-logo__icon--pdf" title="PDF">
-              <FileBadge color="#E53935" letter="P" uid={`${uid}-p`} />
-            </div>
-            <div className="dice-logo__icon dice-logo__icon--word" title="Word">
-              <FileBadge color="#2B579A" letter="W" uid={`${uid}-w`} />
-            </div>
-            <div className="dice-logo__icon dice-logo__icon--excel" title="Excel">
-              <FileBadge color="#217346" letter="X" uid={`${uid}-x`} />
-            </div>
+        {/* 2D overlay — never occluded by 3D face stacking */}
+        <div className="dice-logo__reveal" aria-hidden={!open}>
+          <div className="dice-logo__icon dice-logo__icon--pdf" title="PDF">
+            <FileBadge color="#E53935" letter="P" uid={`${uid}-p`} />
+          </div>
+          <div className="dice-logo__icon dice-logo__icon--word" title="Word">
+            <FileBadge color="#2B579A" letter="W" uid={`${uid}-w`} />
+          </div>
+          <div className="dice-logo__icon dice-logo__icon--excel" title="Excel">
+            <FileBadge color="#217346" letter="X" uid={`${uid}-x`} />
           </div>
         </div>
       </div>
