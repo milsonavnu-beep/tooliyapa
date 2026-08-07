@@ -6,6 +6,7 @@ import {
   Combine, Minimize2, Scissors, RotateCw, Image as ImageIcon, FileImage,
   Hash, Type, Layers, Unlock, Shield, Zap, Lock,
 } from 'lucide-react'
+import DiceLogo from '@/components/tooliyapa/DiceLogo'
 
 const TOOLS = [
   { href: '/merge-pdf',     title: 'Merge PDF',    desc: 'Combine multiple PDFs into one.',         icon: Combine,   iconBg: 'bg-red-50 dark:bg-red-950/40',         iconColor: 'text-red-600' },
@@ -24,6 +25,9 @@ export default function HomePage() {
   return (
     <div className="container mx-auto px-4 py-12 sm:py-16">
       <div className="text-center max-w-3xl mx-auto mb-14">
+        <div className="flex justify-center mb-6">
+          <DiceLogo size={88} />
+        </div>
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 dark:bg-red-950/40 border border-red-100 dark:border-red-900 text-red-700 dark:text-red-400 text-xs font-medium mb-5">
           <Lock className="w-3 h-3" /> 100% browser-based · Your files never leave your device
         </div>

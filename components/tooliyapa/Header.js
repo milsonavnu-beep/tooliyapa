@@ -3,9 +3,10 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Button } from '@/components/ui/button'
-import { FileText, Sun, Moon, Menu, X } from 'lucide-react'
+import { Sun, Moon, Menu, X } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
+import DiceLogo from '@/components/tooliyapa/DiceLogo'
 
 const NAV = [
   { href: '/merge-pdf',    label: 'Merge' },
@@ -42,10 +43,8 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-40 w-full border-b border-gray-200/70 dark:border-gray-800 bg-white/80 dark:bg-gray-950/80 backdrop-blur-md">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between gap-2">
-        <Link href="/" className="flex items-center gap-2 group shrink-0" aria-label="Tooliyapa Home">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-red-500 to-rose-600 flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform">
-            <FileText className="w-5 h-5 text-white" />
-          </div>
+        <Link href="/" className="flex items-center gap-2.5 group shrink-0" aria-label="Tooliyapa Home">
+          <DiceLogo size={40} className="group-hover:scale-105 transition-transform" />
           <span className="text-xl font-bold tracking-tight">
             Tooliya<span className="text-red-600">pa</span>
           </span>
