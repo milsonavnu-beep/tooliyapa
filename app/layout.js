@@ -12,13 +12,13 @@ export const metadata = {
   description: 'Free, fast online PDF tools. Merge, split, compress, rotate, organize, watermark and convert PDFs in your browser — files are not uploaded to Tooliyapa servers.',
   keywords: 'PDF tools, merge PDF, split PDF, compress PDF, rotate PDF, JPG to PDF, PDF to JPG, watermark PDF, page numbers, unlock PDF, free PDF online',
   authors: [{ name: 'Tooliyapa' }],
+  robots: { index: true, follow: true },
   manifest: '/manifest.json',
   openGraph: {
     title: 'Tooliyapa - Free Online PDF Tools',
     description: 'Merge, split, compress and convert PDFs in your browser. Files are not uploaded to Tooliyapa servers.',
     type: 'website',
     siteName: 'Tooliyapa',
-    url: SITE_URL,
   },
   twitter: {
     card: 'summary_large_image',
@@ -29,7 +29,6 @@ export const metadata = {
     icon: [{ url: '/favicon.svg', type: 'image/svg+xml' }],
     apple: '/favicon.svg',
   },
-  alternates: { canonical: '/' },
 }
 
 export const viewport = { width: 'device-width', initialScale: 1, themeColor: '#dc2626' }
