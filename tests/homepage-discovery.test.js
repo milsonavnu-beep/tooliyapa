@@ -53,6 +53,7 @@ describe('homepage category and tool discovery', () => {
   it('uses editorial featuring without fake popularity or analytics claims', () => {
     expect(home).toContain('Featured PDF tools')
     expect(home).toContain('More PDF tools')
-    expect(home).not.toMatch(/popular tools|most popular|users|downloads today|ratings?|reviews?|25\+|1000\+/i)
+    expect(home).not.toMatch(/popular tools|most popular|users|downloads today|(?:customer|user) reviews?|\d[\d,]*\+? (?:ratings?|reviews?)|25\+|1000\+/i)
+    expect(home).toContain('review the <Link className={linkClass} href="/privacy">Privacy Policy</Link>')
   })
 })
