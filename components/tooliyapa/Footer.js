@@ -25,7 +25,7 @@ export default function Footer() {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.7fr_0.8fr_1fr_0.8fr] lg:gap-12">
           <div className="max-w-sm sm:col-span-2 lg:col-span-1">
             <Link href="/" className="inline-flex rounded-xl bg-[#fdfdfb] px-3 py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:ring-offset-4 focus-visible:ring-offset-slate-900" aria-label="Tooliyapa home">
-              <Image src="/branding/tooliyapa_logo_primary.png" alt="Tooliyapa" width={676} height={256} className="h-auto w-40" sizes="160px" />
+              <Image src="/branding/tooliyapa_logo_primary.png" alt="Tooliyapa" width={1254} height={1254} className="h-auto w-40" sizes="160px" />
             </Link>
             <p className="mt-5 max-w-xs text-sm leading-6 text-slate-400">Practical browser-based tools for everyday document and productivity tasks. Tooliyapa is growing with more useful categories over time.</p>
           </div>
