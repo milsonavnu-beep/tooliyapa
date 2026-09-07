@@ -1,7 +1,7 @@
 import { InfoList, InfoPage, InfoSection } from '@/components/tooliyapa/InfoPage'
 import { createPageMetadata } from '@/lib/site'
 
-export const metadata = createPageMetadata({ title: 'Terms of Use — Tooliyapa', description: 'Terms for using Tooliyapa browser-based PDF utilities, including user responsibilities, acceptable use, availability, and output review.', pathname: '/terms' })
+export const metadata = createPageMetadata({ title: 'Terms of Use', description: 'Terms for using Tooliyapa browser-based PDF utilities, including user responsibilities, acceptable use, availability, and output review.', pathname: '/terms' })
 
 export default function Page() {
   return (

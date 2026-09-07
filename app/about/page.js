@@ -2,7 +2,7 @@ import { InfoList, InfoPage, InfoSection, TextLink } from '@/components/tooliyap
 import { createPageMetadata } from '@/lib/site'
 
 export const metadata = createPageMetadata({
-  title: 'About Tooliyapa — Browser-Based PDF Tools',
+  title: 'About Our PDF Tools',
   description: 'Learn what Tooliyapa offers, how its browser-based PDF processing works, and how advertising may support its free utility tools.',
   pathname: '/about',
 })
