@@ -4,7 +4,7 @@ export function InfoPage({ eyebrow, title, intro, lastUpdated, children }) {
   return (
     <div className="container mx-auto max-w-4xl px-4 py-12 sm:py-16">
       <header className="border-b border-gray-200 pb-8 dark:border-gray-800">
-        <p className="text-sm font-semibold uppercase tracking-widest text-red-600 dark:text-red-400">{eyebrow}</p>
+        <p className="text-sm font-semibold uppercase tracking-widest text-teal-700 dark:text-teal-400">{eyebrow}</p>
         <h1 className="mt-3 text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-50 sm:text-5xl">{title}</h1>
         <p className="mt-4 max-w-3xl text-lg leading-8 text-gray-600 dark:text-gray-300">{intro}</p>
         {lastUpdated && <p className="mt-4 text-sm font-medium text-gray-500 dark:text-gray-400">Last updated: {lastUpdated}</p>}
@@ -25,11 +25,11 @@ export function InfoSection({ title, children }) {
 }
 
 export function InfoList({ children }) {
-  return <ul className="list-disc space-y-2 pl-5 marker:text-red-600 dark:marker:text-red-400">{children}</ul>
+  return <ul className="list-disc space-y-2 pl-5 marker:text-teal-700 dark:marker:text-teal-400">{children}</ul>
 }
 
 export function TextLink({ href, children, external = false }) {
-  const classes = 'font-medium text-red-700 underline decoration-red-300 underline-offset-4 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300'
+  const classes = 'font-medium text-teal-700 underline decoration-teal-300 underline-offset-4 hover:text-teal-800 dark:text-teal-400 dark:hover:text-teal-300'
   return external
     ? <a className={classes} href={href} target="_blank" rel="noreferrer">{children}</a>
     : <Link className={classes} href={href}>{children}</Link>

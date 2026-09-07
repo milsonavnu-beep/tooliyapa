@@ -23,7 +23,7 @@ export default function Footer() {
             <nav key={title} aria-label={title}>
               <h2 className="text-sm font-semibold text-gray-900 dark:text-gray-100">{title}</h2>
               <ul className="mt-4 space-y-3 text-sm text-gray-600 dark:text-gray-400">
-                {links.map(([label, href]) => <li key={href}><Link className="transition hover:text-red-600 dark:hover:text-red-400" href={href}>{label}</Link></li>)}
+                {links.map(([label, href]) => <li key={href}><Link className="transition hover:text-teal-700 dark:hover:text-teal-400" href={href}>{label}</Link></li>)}
               </ul>
             </nav>
           ))}

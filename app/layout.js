@@ -31,7 +31,7 @@ export const metadata = {
   },
 }
 
-export const viewport = { width: 'device-width', initialScale: 1, themeColor: '#dc2626' }
+export const viewport = { width: 'device-width', initialScale: 1, themeColor: '#0F766E' }
 
 export default function RootLayout({ children }) {
   return (
@@ -41,7 +41,7 @@ export default function RootLayout({ children }) {
 
       <body className="min-h-screen font-sans antialiased bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <div className="min-h-screen flex flex-col bg-gradient-to-b from-white via-rose-50/40 to-white dark:from-gray-950 dark:via-gray-900 dark:to-gray-950">
+          <div className="min-h-screen flex flex-col bg-gradient-to-b from-white via-teal-50/25 to-white dark:from-gray-950 dark:via-gray-900 dark:to-gray-950">
             <Header />
             <main id="main-content" className="flex-1">{children}</main>
             <Footer />

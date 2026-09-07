@@ -61,7 +61,7 @@ export default function Header() {
             const active = pathname === n.href
             return (
               <Link key={n.href} href={n.href}>
-                <Button variant={active ? 'default' : 'ghost'} size="sm" className={active ? 'bg-red-600 hover:bg-red-700 text-white' : ''}>{n.label}</Button>
+                <Button variant={active ? 'default' : 'ghost'} size="sm" className={active ? 'bg-teal-700 hover:bg-teal-800 text-white' : ''}>{n.label}</Button>
               </Link>
             )
           })}
@@ -84,7 +84,7 @@ export default function Header() {
               const active = pathname === n.href
               return (
                 <Link key={n.href} href={n.href} onClick={() => setOpen(false)}
-                  className={`px-3 py-2 rounded-md text-sm font-medium transition ${active ? 'bg-red-600 text-white' : 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800'}`}>
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition ${active ? 'bg-teal-700 text-white hover:bg-teal-800' : 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800'}`}>
                   {n.label}
                 </Link>
               )

@@ -26,7 +26,7 @@ export function ToolInfoSection({ title, children, icon: Icon = Info }) {
   return (
     <section className={panelStyles} aria-labelledby={id}>
       <div className="flex items-start gap-3">
-        <Icon className="mt-0.5 h-5 w-5 shrink-0 text-red-600 dark:text-red-400" aria-hidden="true" />
+        <Icon className="mt-0.5 h-5 w-5 shrink-0 text-teal-700 dark:text-teal-400" aria-hidden="true" />
         <div>
           <h2 id={id} className="text-xl font-bold text-gray-900 dark:text-gray-50">{title}</h2>
           <div className="mt-3 space-y-3 text-sm leading-6 text-gray-700 dark:text-gray-300">{children}</div>
@@ -83,8 +83,8 @@ export function RelatedTools({ tools }) {
       <h2 id="related-pdf-tools" className="text-2xl font-bold text-gray-900 dark:text-gray-50">Related PDF tools</h2>
       <div className="mt-4 grid gap-3 sm:grid-cols-2">
         {tools.map(({ href, title, description }) => (
-          <Link key={href} href={href} className={`${panelStyles} group transition hover:border-red-300 hover:shadow-sm dark:hover:border-red-900`}>
-            <h3 className="font-semibold text-gray-900 group-hover:text-red-600 dark:text-gray-50 dark:group-hover:text-red-400">{title}</h3>
+          <Link key={href} href={href} className={`${panelStyles} group transition hover:border-teal-300 hover:shadow-sm dark:hover:border-teal-900`}>
+            <h3 className="font-semibold text-gray-900 group-hover:text-teal-700 dark:text-gray-50 dark:group-hover:text-teal-400">{title}</h3>
             <p className="mt-1 text-sm leading-6 text-gray-600 dark:text-gray-400">{description}</p>
           </Link>
         ))}

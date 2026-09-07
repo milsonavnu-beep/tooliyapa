@@ -4,9 +4,9 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { ArrowLeft } from 'lucide-react'
 
-export default function ToolShell({ icon: Icon, title, description, accent = 'red', children }) {
+export default function ToolShell({ icon: Icon, title, description, accent = 'teal', children }) {
   const accentMap = {
-    red:      { bg: 'bg-red-50 dark:bg-red-950/40',         text: 'text-red-600' },
+    teal:     { bg: 'bg-teal-50 dark:bg-teal-950/30',       text: 'text-teal-700 dark:text-teal-400' },
     emerald:  { bg: 'bg-emerald-50 dark:bg-emerald-950/40', text: 'text-emerald-600' },
     amber:    { bg: 'bg-amber-50 dark:bg-amber-950/40',     text: 'text-amber-600' },
     blue:     { bg: 'bg-blue-50 dark:bg-blue-950/40',       text: 'text-blue-600' },
@@ -17,7 +17,7 @@ export default function ToolShell({ icon: Icon, title, description, accent = 're
     fuchsia:  { bg: 'bg-fuchsia-50 dark:bg-fuchsia-950/40', text: 'text-fuchsia-600' },
     slate:    { bg: 'bg-slate-100 dark:bg-slate-800',       text: 'text-slate-700 dark:text-slate-300' },
   }
-  const c = accentMap[accent] || accentMap.red
+  const c = accentMap[accent] || accentMap.teal
   return (
     <div className="container mx-auto px-4 py-8 sm:py-12 max-w-4xl">
       <Link href="/"><Button variant="ghost" size="sm" className="mb-4"><ArrowLeft className="w-4 h-4 mr-1" /> Back to all tools</Button></Link>

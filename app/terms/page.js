@@ -17,7 +17,7 @@ export default function Page() {
       <InfoSection title="9. Limitation of liability"><p>To the extent permitted by applicable law, Tooliyapa is not responsible for indirect, incidental, or consequential loss arising from use of, inability to use, or reliance on the service or its output. You are responsible for keeping backups and deciding whether an output is suitable for your purpose. Liability that cannot legally be limited remains unaffected.</p></InfoSection>
       <InfoSection title="10. Restricting access"><p>Access may be limited or blocked when reasonably necessary to protect the service, users, or others, including in response to abuse, attacks, illegal use, or violations of these terms.</p></InfoSection>
       <InfoSection title="11. Changes to these terms"><p>These terms may be revised as Tooliyapa changes. The last-updated date will identify the current version. Continued use after an update means the revised terms apply to later use.</p></InfoSection>
-      <InfoSection title="12. Contact"><p>Questions about these terms can be sent to <a className="font-medium text-red-700 underline underline-offset-4 dark:text-red-400" href="mailto:milsonavnu@gmail.com">milsonavnu@gmail.com</a>.</p></InfoSection>
+      <InfoSection title="12. Contact"><p>Questions about these terms can be sent to <a className="font-medium text-teal-700 underline underline-offset-4 dark:text-teal-400" href="mailto:milsonavnu@gmail.com">milsonavnu@gmail.com</a>.</p></InfoSection>
     </InfoPage>
   )
 }
