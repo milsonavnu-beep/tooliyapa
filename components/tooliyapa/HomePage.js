@@ -1,12 +1,14 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { Card } from '@/components/ui/card'
 import {
   Combine, Minimize2, Scissors, RotateCw, Image as ImageIcon, FileImage,
-  Hash, Type, Layers, Unlock, ShieldCheck, Cpu, Download,
+  Hash, Type, Layers, Unlock, ShieldCheck, Cpu, Download, ArrowRight,
+  LayoutGrid, Zap,
 } from 'lucide-react'
-import DiceLogo from '@/components/tooliyapa/DiceLogo'
+import ToolSearch from '@/components/tooliyapa/ToolSearch'
 
 const TOOLS = [
   { href: '/merge-pdf', title: 'Merge PDF', desc: 'Combine PDFs in your chosen whole-file order.', icon: Combine, iconBg: 'bg-teal-50 dark:bg-teal-950/30', iconColor: 'text-teal-700 dark:text-teal-400' },
@@ -25,22 +27,47 @@ const linkClass = 'font-medium text-teal-700 underline decoration-teal-200 under
 
 export default function HomePage() {
   return (
-    <div className="container mx-auto px-4 py-12 sm:py-16">
-      <section className="text-center max-w-3xl mx-auto mb-12" aria-labelledby="homepage-heading">
-        <div className="flex justify-center mb-6">
-          <DiceLogo size={88} />
+    <div>
+      <section className="relative isolate overflow-hidden border-b border-slate-100 bg-[#fdfdfb] dark:border-slate-800 dark:bg-slate-950" aria-labelledby="homepage-heading">
+        <div aria-hidden="true" className="absolute -left-40 top-12 -z-10 h-96 w-96 rounded-full bg-cyan-100/45 blur-3xl dark:bg-teal-950/30" />
+        <div aria-hidden="true" className="absolute -right-36 bottom-0 -z-10 h-[28rem] w-[28rem] rounded-full bg-teal-100/40 blur-3xl dark:bg-teal-950/30" />
+        <div className="mx-auto grid max-w-[1360px] items-center gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[1.08fr_0.92fr] lg:gap-8 lg:py-20">
+          <div className="max-w-2xl">
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-teal-100 bg-teal-50/90 px-3 py-1.5 text-xs font-semibold text-teal-800 dark:border-teal-900 dark:bg-teal-950/50 dark:text-teal-300">
+              <Zap className="h-3.5 w-3.5" aria-hidden="true" /> Simple tools. Real productivity.
+            </div>
+            <h1 id="homepage-heading" className="text-[2.55rem] font-bold leading-[1.08] tracking-[-0.04em] text-slate-900 dark:text-white sm:text-5xl lg:text-[3.55rem] xl:text-[4rem]">
+              Everyday tools for <span className="text-teal-700 dark:text-teal-400">documents, calculations,</span> and productivity.
+            </h1>
+            <p className="mt-6 max-w-xl text-base leading-7 text-slate-600 dark:text-slate-300 sm:text-lg">Tooliyapa brings together PDF tools, calculators, Word/Excel tools, converters, and text utilities in one fast, browser-based workspace.</p>
+            <div className="mt-7 max-w-xl">
+              <ToolSearch />
+              <p className="mt-2 pl-1 text-xs text-slate-500 dark:text-slate-400">Try “merge PDF” or “calculator” — search currently shows available PDF tools.</p>
+            </div>
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+              <Link href="#tools" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-900 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-teal-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2 dark:bg-white dark:text-slate-950 dark:hover:bg-teal-300">Explore all tools <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
+              <Link href="#tools" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-800 shadow-sm transition hover:-translate-y-0.5 hover:border-teal-300 hover:text-teal-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2 dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:hover:border-teal-700"><LayoutGrid className="h-4 w-4" aria-hidden="true" /> Browse categories</Link>
+            </div>
+          </div>
+
+          <div className="mx-auto w-full max-w-[650px] lg:max-w-none">
+            <Image src="/branding/tooliyapa_hero_tools.png" alt="Tooliyapa toolbox with document, calculator, text, spreadsheet, and converter tools" width={1448} height={1086} className="h-auto w-full object-contain" sizes="(max-width: 1023px) 92vw, 46vw" priority />
+            <div className="mt-3 grid gap-2 sm:grid-cols-3">
+              {[
+                { icon: Cpu, title: 'Runs in your browser', desc: 'No installation needed' },
+                { icon: Zap, title: 'Fast and simple', desc: 'Save time, get more done' },
+                { icon: ShieldCheck, title: 'Privacy-first workflow', desc: 'Selected files stay on your device during processing' },
+              ].map((item) => {
+                const Icon = item.icon
+                return <div key={item.title} className="flex items-start gap-2.5 rounded-xl border border-slate-200/80 bg-white/90 p-3 shadow-sm dark:border-slate-700 dark:bg-slate-900/90"><span className="mt-0.5 rounded-lg bg-teal-50 p-1.5 text-teal-700 dark:bg-teal-950 dark:text-teal-300"><Icon className="h-4 w-4" aria-hidden="true" /></span><span><strong className="block text-xs font-semibold text-slate-900 dark:text-white">{item.title}</strong><span className="mt-0.5 block text-[11px] leading-4 text-slate-500 dark:text-slate-400">{item.desc}</span></span></div>
+              })}
+            </div>
+          </div>
         </div>
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-50 dark:bg-teal-950/30 border border-teal-100 dark:border-teal-900 text-teal-700 dark:text-teal-400 text-xs font-medium mb-5">
-          <ShieldCheck className="w-3 h-3" aria-hidden="true" /> Browser-based PDF processing
-        </div>
-        <h1 id="homepage-heading" className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-gray-900 dark:text-gray-50">
-          Simple PDF tools for
-          <span className="block text-teal-700 dark:text-teal-400">everyday document tasks.</span>
-        </h1>
-        <p className="mt-5 text-lg leading-8 text-gray-600 dark:text-gray-400">Merge, split, organize, rotate, convert, number, watermark, and optimize PDF files with focused tools that run in your browser.</p>
       </section>
 
-      <section aria-labelledby="tools-heading">
+      <div className="container mx-auto px-4 py-12 sm:py-16">
+      <section id="tools" className="scroll-mt-24" aria-labelledby="tools-heading">
         <h2 id="tools-heading" className="sr-only">Choose a PDF tool</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 max-w-6xl mx-auto">
         {TOOLS.map((tool) => {
@@ -148,6 +175,7 @@ export default function HomePage() {
             </div>
           )
         })}
+      </div>
       </div>
     </div>
   )
