@@ -30,7 +30,7 @@ const relatedTools = [
   { href: '/organize-pdf', title: 'Organize PDF', description: 'Put pages in their final order before numbering them.' },
   { href: '/merge-pdf', title: 'Merge PDF', description: 'Combine documents first so numbering follows the final page sequence.' },
   { href: '/split-pdf', title: 'Split PDF', description: 'Create a smaller page set if only part of a document should be numbered.' },
-  { href: '/watermark', title: 'Watermark PDF', description: 'Add a separate text or image mark to PDF pages.' },
+  { href: '/watermark', title: 'Watermark PDF', description: 'Add a custom text watermark to PDF pages.' },
 ]
 
 export default function Page() {
