@@ -1,0 +1,26 @@
+import { InfoPage, InfoSection, TextLink } from '@/components/tooliyapa/InfoPage'
+import { createPageMetadata } from '@/lib/site'
+
+export const metadata = createPageMetadata({
+  title: 'Privacy Policy — Tooliyapa',
+  description: 'Read how Tooliyapa handles browser-side PDF processing, ordinary website requests, local storage, advertising, and third-party services.',
+  pathname: '/privacy',
+})
+
+export default function Page() {
+  return (
+    <InfoPage eyebrow="Legal and privacy" title="Privacy Policy" intro="This policy explains how Tooliyapa's browser-based PDF workflow differs from the ordinary data involved in visiting a website and using third-party services." lastUpdated="September 7, 2026">
+      <InfoSection title="1. Introduction"><p>This Privacy Policy applies when you visit tooliyapa.com and use its PDF tools. Tooliyapa does not currently require user accounts. This policy describes the present website implementation and may be updated as the service changes.</p></InfoSection>
+      <InfoSection title="2. PDF file processing"><p>PDFs and images selected for Tooliyapa&apos;s document tools are processed in your browser according to the current implementation. Tooliyapa does not upload those files to Tooliyapa servers as part of the normal browser-side PDF-processing workflow. Your browser creates the result for you to download.</p><p>This statement is limited to the file-processing workflow. It does not mean that no information is transmitted when you visit the website: normal page requests, advertising, and other website services operate separately.</p></InfoSection>
+      <InfoSection title="3. Information transmitted when you visit"><p>Like other websites, Tooliyapa must deliver pages and resources over a network. Hosting, network, and security providers may process ordinary request information such as an IP address, request time, requested URL, referrer, and browser or device details as needed to deliver, protect, and diagnose the service. This policy does not claim that Tooliyapa independently keeps any particular category of server log.</p></InfoSection>
+      <InfoSection title="4. Advertising and Google AdSense"><p>Tooliyapa may use third-party advertising services such as Google AdSense. Advertising providers may use cookies, device identifiers, or similar technologies to deliver, measure, and protect advertising, subject to their policies and applicable consent choices. The advertising shown may vary; Tooliyapa does not state that ads are always personalized or always non-personalized.</p><p>You can learn about Google&apos;s practices in the <TextLink href="https://policies.google.com/privacy" external>Google Privacy Policy</TextLink> and review available advertising choices through <TextLink href="https://myadcenter.google.com/" external>Google&apos;s My Ad Center</TextLink>.</p></InfoSection>
+      <InfoSection title="5. Cookies and browser storage"><p>Tooliyapa&apos;s theme feature uses browser storage through its theme provider to remember a light, dark, or system appearance preference. This functional preference is separate from the PDF file itself. Third-party services, including advertising providers, may set or read cookies or similar storage under their own policies and any consent mechanism that applies.</p></InfoSection>
+      <InfoSection title="6. Third-party services"><p>The website uses service providers to operate. These may include Vercel for website hosting and Google AdSense for advertising. Browsers also download the site&apos;s software dependencies as part of the application. This is a description of relevant categories and current examples, not a promise that the list of providers will never change.</p></InfoSection>
+      <InfoSection title="7. Data retention"><p>Because PDF files are not uploaded to Tooliyapa servers in the normal processing workflow, Tooliyapa does not retain those uploaded files on its servers as part of that workflow. Ordinary operational data handled by hosting, network, security, or advertising providers may be retained according to their legitimate operational needs and their own policies. Tooliyapa does not specify a retention period it has not verified.</p></InfoSection>
+      <InfoSection title="8. Children's privacy"><p>Tooliyapa is a general-purpose document utility and is not directed specifically to children. If you believe a child has provided personal information through a communication with Tooliyapa, contact us so the concern can be reviewed.</p></InfoSection>
+      <InfoSection title="9. External links"><p>Tooliyapa may link to third-party websites. Their privacy practices and content are controlled by their operators, so review their policies before providing information to them.</p></InfoSection>
+      <InfoSection title="10. Changes to this policy"><p>This policy may change when Tooliyapa&apos;s features, providers, or practices change. The date at the top will be updated when revisions are published. Please review the current version periodically.</p></InfoSection>
+      <InfoSection title="11. Contact"><p>For privacy questions or concerns, email <a className="font-medium text-red-700 underline underline-offset-4 dark:text-red-400" href="mailto:milsonavnu@gmail.com">milsonavnu@gmail.com</a>.</p></InfoSection>
+    </InfoPage>
+  )
+}

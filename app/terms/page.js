@@ -1,0 +1,23 @@
+import { InfoList, InfoPage, InfoSection } from '@/components/tooliyapa/InfoPage'
+import { createPageMetadata } from '@/lib/site'
+
+export const metadata = createPageMetadata({ title: 'Terms of Use — Tooliyapa', description: 'Terms for using Tooliyapa browser-based PDF utilities, including user responsibilities, acceptable use, availability, and output review.', pathname: '/terms' })
+
+export default function Page() {
+  return (
+    <InfoPage eyebrow="Legal" title="Terms of Use" intro="These terms set practical rules for using Tooliyapa and its browser-based PDF utilities." lastUpdated="September 7, 2026">
+      <InfoSection title="1. Acceptance of these terms"><p>By accessing or using Tooliyapa, you agree to these Terms of Use. If you do not agree, do not use the service.</p></InfoSection>
+      <InfoSection title="2. The service"><p>Tooliyapa provides browser-based utilities for common PDF and image tasks. No account is currently required. Features may be added, changed, limited, or discontinued over time.</p></InfoSection>
+      <InfoSection title="3. Your files and responsibilities"><p>You remain responsible for the files and content you process and for how you use the results. You must have the necessary ownership, permission, or other authority to process each file. Keep original copies of important documents and review output before relying on, sharing, or deleting anything.</p></InfoSection>
+      <InfoSection title="4. Acceptable use"><p>You may not misuse Tooliyapa. In particular, you must not:</p><InfoList><li>use the service for illegal activity or to violate another person&apos;s rights;</li><li>process content when you lack the right or authority to do so;</li><li>attempt to attack, bypass, probe, disrupt, or gain unauthorized access to the website or related systems;</li><li>use automated activity or other methods intended to overload or degrade the service; or</li><li>misrepresent Tooliyapa or use it to distribute harmful code.</li></InfoList></InfoSection>
+      <InfoSection title="5. Availability and output"><p>Tooliyapa is provided on an “as available” basis. Continuous, secure, or error-free access is not guaranteed, and maintenance or technical problems may interrupt service. PDFs vary widely, so not every document will process successfully or produce the result you expect. Unusual, damaged, encrypted, or unsupported files may fail. Always inspect generated output before relying on it.</p></InfoSection>
+      <InfoSection title="6. Third-party services and links"><p>The website may rely on or link to third-party services, including hosting and advertising providers. Those services may have their own terms and policies. Tooliyapa is not responsible for third-party websites or their content.</p></InfoSection>
+      <InfoSection title="7. Intellectual property"><p>Tooliyapa&apos;s branding and original site content and code are protected by applicable intellectual-property rules. The website also uses third-party and open-source components, which remain subject to their respective licenses and ownership. These terms do not claim ownership over your files or over third-party material.</p></InfoSection>
+      <InfoSection title="8. Disclaimer of warranties"><p>To the extent permitted by applicable law, Tooliyapa is offered without warranties about accuracy, fitness for a particular purpose, compatibility, or uninterrupted availability. Nothing here limits a right or warranty that cannot legally be excluded.</p></InfoSection>
+      <InfoSection title="9. Limitation of liability"><p>To the extent permitted by applicable law, Tooliyapa is not responsible for indirect, incidental, or consequential loss arising from use of, inability to use, or reliance on the service or its output. You are responsible for keeping backups and deciding whether an output is suitable for your purpose. Liability that cannot legally be limited remains unaffected.</p></InfoSection>
+      <InfoSection title="10. Restricting access"><p>Access may be limited or blocked when reasonably necessary to protect the service, users, or others, including in response to abuse, attacks, illegal use, or violations of these terms.</p></InfoSection>
+      <InfoSection title="11. Changes to these terms"><p>These terms may be revised as Tooliyapa changes. The last-updated date will identify the current version. Continued use after an update means the revised terms apply to later use.</p></InfoSection>
+      <InfoSection title="12. Contact"><p>Questions about these terms can be sent to <a className="font-medium text-red-700 underline underline-offset-4 dark:text-red-400" href="mailto:milsonavnu@gmail.com">milsonavnu@gmail.com</a>.</p></InfoSection>
+    </InfoPage>
+  )
+}
