@@ -176,48 +176,59 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mt-20 max-w-6xl mx-auto" aria-labelledby="possibilities-heading">
+      <section className="mx-auto mt-20 max-w-6xl border-t border-slate-200 pt-16 dark:border-slate-800 sm:mt-24" aria-labelledby="possibilities-heading">
         <div className="max-w-3xl">
-          <h2 id="possibilities-heading" className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100">What you can do with Tooliyapa</h2>
-          <p className="mt-3 text-base leading-7 text-gray-600 dark:text-gray-400">Start with the outcome you need. Each tool has a focused workflow, so you can move between tools when a document needs more than one change.</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-teal-700 dark:text-teal-400">PDF workflows</p>
+          <h2 id="possibilities-heading" className="mt-2 text-2xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-3xl">What you can do with Tooliyapa</h2>
+          <p className="mt-3 text-base leading-7 text-slate-600 dark:text-slate-400">Start with the outcome you need. Each tool has a focused workflow, so you can move between tools when a document needs more than one change.</p>
         </div>
-        <div className="mt-8 grid gap-5 sm:grid-cols-2">
-          <article className="rounded-2xl border border-gray-200 bg-white/80 p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900/70">
-            <h3 className="font-semibold text-gray-900 dark:text-gray-100">Combine and organize</h3>
-            <p className="mt-2 text-sm leading-6 text-gray-600 dark:text-gray-400"><Link className={linkClass} href="/merge-pdf">Merge PDF</Link> joins separate documents in whole-file order. <Link className={linkClass} href="/split-pdf">Split PDF</Link> extracts thumbnail-selected pages or creates separate one-page files. For changes inside one document, <Link className={linkClass} href="/organize-pdf">Organize PDF</Link> reorders, removes, and rotates individual pages, while <Link className={linkClass} href="/rotate-pdf">Rotate PDF</Link> applies an angle to all or specified pages.</p>
+        <div className="mt-8 grid gap-4 sm:grid-cols-2">
+          <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900/80">
+            <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-teal-700 dark:text-teal-400"><Combine className="h-4 w-4" aria-hidden="true" /> Page management</span>
+            <h3 className="mt-3 font-semibold text-slate-900 dark:text-white">Combine and organize</h3>
+            <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400"><Link className={linkClass} href="/merge-pdf">Merge PDF</Link> joins separate documents in whole-file order. <Link className={linkClass} href="/split-pdf">Split PDF</Link> extracts thumbnail-selected pages or creates separate one-page files. For changes inside one document, <Link className={linkClass} href="/organize-pdf">Organize PDF</Link> reorders, removes, and rotates individual pages, while <Link className={linkClass} href="/rotate-pdf">Rotate PDF</Link> applies an angle to all or specified pages.</p>
           </article>
-          <article className="rounded-2xl border border-gray-200 bg-white/80 p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900/70">
-            <h3 className="font-semibold text-gray-900 dark:text-gray-100">Convert documents and images</h3>
-            <p className="mt-2 text-sm leading-6 text-gray-600 dark:text-gray-400"><Link className={linkClass} href="/jpg-to-pdf">JPG to PDF</Link> places JPG, JPEG, or PNG images into one PDF, with move controls setting their order. <Link className={linkClass} href="/pdf-to-jpg">PDF to JPG</Link> takes the opposite path by rendering every page as its own JPG.</p>
+          <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900/80">
+            <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-teal-700 dark:text-teal-400"><FileImage className="h-4 w-4" aria-hidden="true" /> Conversion</span>
+            <h3 className="mt-3 font-semibold text-slate-900 dark:text-white">Convert documents and images</h3>
+            <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400"><Link className={linkClass} href="/jpg-to-pdf">JPG to PDF</Link> places JPG, JPEG, or PNG images into one PDF, with move controls setting their order. <Link className={linkClass} href="/pdf-to-jpg">PDF to JPG</Link> takes the opposite path by rendering every page as its own JPG.</p>
           </article>
-          <article className="rounded-2xl border border-gray-200 bg-white/80 p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900/70">
-            <h3 className="font-semibold text-gray-900 dark:text-gray-100">Prepare a finished PDF</h3>
-            <p className="mt-2 text-sm leading-6 text-gray-600 dark:text-gray-400">Try <Link className={linkClass} href="/compress-pdf">Compress PDF</Link> for lossless structural optimization, <Link className={linkClass} href="/page-numbers">Page Numbers</Link> for consistent numbering on every page, or <Link className={linkClass} href="/watermark">Text Watermark</Link> for one visible text label across the document.</p>
+          <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900/80">
+            <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-teal-700 dark:text-teal-400"><FileText className="h-4 w-4" aria-hidden="true" /> Finishing</span>
+            <h3 className="mt-3 font-semibold text-slate-900 dark:text-white">Prepare a finished PDF</h3>
+            <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">Try <Link className={linkClass} href="/compress-pdf">Compress PDF</Link> for lossless structural optimization, <Link className={linkClass} href="/page-numbers">Page Numbers</Link> for consistent numbering on every page, or <Link className={linkClass} href="/watermark">Text Watermark</Link> for one visible text label across the document.</p>
           </article>
-          <article className="rounded-2xl border border-gray-200 bg-white/80 p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900/70">
-            <h3 className="font-semibold text-gray-900 dark:text-gray-100">Work with owner permissions</h3>
-            <p className="mt-2 text-sm leading-6 text-gray-600 dark:text-gray-400"><Link className={linkClass} href="/unlock-pdf">Remove PDF Restrictions</Link> can attempt to rewrite an already readable PDF without supported owner-permission restrictions. It does not guess passwords, crack encryption, or decrypt a file that requires a password to open.</p>
+          <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900/80">
+            <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-teal-700 dark:text-teal-400"><Unlock className="h-4 w-4" aria-hidden="true" /> Permissions</span>
+            <h3 className="mt-3 font-semibold text-slate-900 dark:text-white">Work with owner permissions</h3>
+            <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400"><Link className={linkClass} href="/unlock-pdf">Remove PDF Restrictions</Link> can attempt to rewrite an already readable PDF without supported owner-permission restrictions. It does not guess passwords, crack encryption, or decrypt a file that requires a password to open.</p>
           </article>
         </div>
       </section>
 
-      <section className="mt-16 max-w-6xl mx-auto rounded-2xl border border-teal-100 bg-teal-50/70 p-6 sm:p-8 dark:border-teal-950 dark:bg-teal-950/20" aria-labelledby="processing-heading">
-        <div className="grid gap-8 lg:grid-cols-[1fr_1.3fr] lg:items-start">
+      <section className="relative mx-auto mt-16 max-w-6xl overflow-hidden rounded-3xl border border-teal-200/70 bg-teal-50/70 p-6 shadow-sm dark:border-teal-900/70 dark:bg-teal-950/20 sm:p-9" aria-labelledby="processing-heading">
+        <div aria-hidden="true" className="absolute -right-20 -top-24 h-64 w-64 rounded-full bg-white/60 blur-3xl dark:bg-teal-900/10" />
+        <div className="relative grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-start lg:gap-12">
           <div>
-            <Cpu className="h-8 w-8 text-teal-700 dark:text-teal-400" aria-hidden="true" />
-            <h2 id="processing-heading" className="mt-4 text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-100">How browser-based processing works</h2>
+            <span className="inline-flex rounded-xl border border-teal-200 bg-white p-3 text-teal-700 shadow-sm dark:border-teal-900 dark:bg-slate-900 dark:text-teal-400"><ShieldCheck className="h-6 w-6" aria-hidden="true" /></span>
+            <p className="mt-5 text-xs font-semibold uppercase tracking-[0.18em] text-teal-700 dark:text-teal-400">PDF processing &amp; privacy</p>
+            <h2 id="processing-heading" className="mt-2 text-2xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-3xl">How browser-based processing works</h2>
           </div>
-          <div className="space-y-4 text-sm leading-6 text-gray-700 dark:text-gray-300">
-            <p>The selected files for these tool workflows are processed by code running in your browser. The selected files themselves are not uploaded to Tooliyapa servers as part of the processing workflow. When processing finishes, you download the generated result from the browser.</p>
-            <p>Speed and capacity depend on the file&apos;s size and complexity as well as your device, available memory, and browser. A large scan or a PDF with complex pages can take longer or fail where a smaller document succeeds.</p>
-            <p>Ordinary website services and third-party scripts are separate from PDF-file processing. Read the <Link className={linkClass} href="/privacy">Privacy Policy</Link> for more information about website data and service providers.</p>
+          <div className="divide-y divide-teal-200/70 text-sm leading-6 text-slate-700 dark:divide-teal-900/60 dark:text-slate-300">
+            <p className="pb-4">Selected PDF files for these tool workflows are processed by code running in your browser. The selected PDF files themselves are not uploaded to Tooliyapa servers as part of the PDF-processing workflow. When processing finishes, you download the generated result from the browser.</p>
+            <p className="py-4">Speed and capacity depend on the file&apos;s size and complexity as well as your device, available memory, and browser. A large scan or a PDF with complex pages can take longer or fail where a smaller document succeeds.</p>
+            <p className="pt-4">Ordinary website services and third-party scripts are separate from PDF-file processing. Read the <Link className={linkClass} href="/privacy">Privacy Policy</Link> for more information about website data and service providers.</p>
           </div>
         </div>
       </section>
 
-      <section className="mt-16 max-w-6xl mx-auto" aria-labelledby="choose-heading">
-        <h2 id="choose-heading" className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100">Choose the right PDF tool</h2>
-        <div className="mt-7 grid gap-x-10 gap-y-6 md:grid-cols-2">
+      <section className="mx-auto mt-20 max-w-6xl" aria-labelledby="choose-heading">
+        <div className="max-w-2xl">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-teal-700 dark:text-teal-400">Quick comparisons</p>
+          <h2 id="choose-heading" className="mt-2 text-2xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-3xl">Choose the right PDF tool</h2>
+          <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-400">Similar tasks can need different workflows. These distinctions help you choose without guessing.</p>
+        </div>
+        <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {[
             { title: 'Merge or organize?', desc: 'Merge combines separate PDFs in whole-file order. Organize changes the pages within one PDF, using thumbnails to reorder, remove, or rotate them.' },
             { title: 'Split or organize?', desc: 'Split creates one combined extraction from selected thumbnails or a separate PDF for each page. Organize produces one PDF after page-level edits.' },
@@ -226,41 +237,43 @@ export default function HomePage() {
             { title: 'What does a watermark do?', desc: 'Watermark adds visible text to every page. That marking is not document encryption, access control, DRM, or proof of ownership.' },
             { title: 'Which restrictions are supported?', desc: 'Restriction removal is an attempt for authorized, already readable PDFs with owner permissions. It is not open-password decryption, and results depend on the file.' },
           ].map((item) => (
-            <article key={item.title} className="border-l-2 border-teal-200 pl-4 dark:border-teal-900">
-              <h3 className="font-semibold text-gray-900 dark:text-gray-100">{item.title}</h3>
-              <p className="mt-1 text-sm leading-6 text-gray-600 dark:text-gray-400">{item.desc}</p>
+            <article key={item.title} className="rounded-2xl border border-slate-200 bg-slate-50/70 p-5 transition-colors hover:border-teal-200 dark:border-slate-800 dark:bg-slate-900/60 dark:hover:border-teal-900">
+              <div className="mb-4 h-1 w-8 rounded-full bg-teal-600" aria-hidden="true" />
+              <h3 className="font-semibold text-slate-900 dark:text-white">{item.title}</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">{item.desc}</p>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="mt-16 max-w-6xl mx-auto border-t border-gray-200 pt-12 dark:border-gray-800" aria-labelledby="trust-heading">
-        <div className="grid gap-8 lg:grid-cols-[1fr_1.4fr]">
+      <section className="mx-auto mt-20 max-w-6xl rounded-3xl border border-slate-200 bg-[#fdfdfb] p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900/80 sm:p-9" aria-labelledby="trust-heading">
+        <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-12">
           <div>
-            <h2 id="trust-heading" className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100">Practical tools, clear expectations</h2>
-            <p className="mt-3 text-sm leading-6 text-gray-600 dark:text-gray-400">Tooliyapa provides browser-based PDF utilities, and no account is currently required to use them.</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-teal-700 dark:text-teal-400">Before you finish</p>
+            <h2 id="trust-heading" className="mt-2 text-2xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-3xl">Practical tools, clear expectations</h2>
+            <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-400">Tooliyapa provides browser-based PDF utilities, and no account is currently required to use them.</p>
           </div>
-          <div className="space-y-4 text-sm leading-6 text-gray-600 dark:text-gray-400">
+          <div className="space-y-4 text-sm leading-6 text-slate-600 dark:text-slate-400">
             <p>Keep your source file and check every downloaded result before sharing it or relying on it. Unusual, damaged, encrypted, or very large documents may fail, and specialized PDF features may not always survive a rewrite exactly.</p>
             <p>Learn more <Link className={linkClass} href="/about">about Tooliyapa</Link>, review the <Link className={linkClass} href="/privacy">Privacy Policy</Link>, or <Link className={linkClass} href="/contact">contact us</Link>. Use of the site is also covered by the <Link className={linkClass} href="/terms">Terms of Use</Link> and <Link className={linkClass} href="/disclaimer">Disclaimer</Link>.</p>
           </div>
         </div>
       </section>
 
-      <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto" aria-label="Workflow overview">
+      <div className="mx-auto mt-6 grid max-w-6xl grid-cols-1 gap-3 sm:grid-cols-3" aria-label="Workflow overview">
         {[
           { icon: Cpu, title: 'Runs in your browser', desc: 'Processing uses your device and browser resources.' },
-          { icon: ShieldCheck, title: 'Local file workflow', desc: 'Selected files are not uploaded to Tooliyapa servers for processing.' },
+          { icon: ShieldCheck, title: 'Local file workflow', desc: 'Selected PDF files are not uploaded to Tooliyapa servers for PDF processing.' },
           { icon: Download, title: 'Download and check', desc: 'Save the generated result, then verify it before use.' },
         ].map((f, i) => {
           const Icon = f.icon
           return (
-            <div key={i} className="text-center p-4">
-              <div className="w-12 h-12 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center mx-auto mb-3">
-                <Icon className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+            <div key={i} className="flex items-start gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-teal-50 text-teal-700 dark:bg-teal-950/60 dark:text-teal-400">
+                <Icon className="h-5 w-5" aria-hidden="true" />
               </div>
-              <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-1">{f.title}</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">{f.desc}</p>
+              <div><h3 className="font-semibold text-slate-900 dark:text-white">{f.title}</h3>
+              <p className="mt-1 text-sm leading-5 text-slate-600 dark:text-slate-400">{f.desc}</p></div>
             </div>
           )
         })}
