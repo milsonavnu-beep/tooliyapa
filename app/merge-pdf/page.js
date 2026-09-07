@@ -1,3 +1,4 @@
 import MergePdfTool from '@/components/tooliyapa/MergePdfTool'
-export const metadata = { title: 'Merge PDF — Free Online PDF Merger', description: 'Combine multiple PDFs into one file in any order. 100% free, fast, and processed in your browser.', alternates: { canonical: '/merge-pdf' } }
+import { createPageMetadata } from '@/lib/site'
+export const metadata = createPageMetadata({ title: 'Merge PDF — Free Online PDF Merger', description: 'Combine multiple PDFs into one file in any order. 100% free, fast, and processed in your browser.', pathname: '/merge-pdf' })
 export default function Page() { return <MergePdfTool /> }

@@ -1,10 +1,11 @@
 import HomePage from '@/components/tooliyapa/HomePage'
+import { createPageMetadata } from '@/lib/site'
 
-export const metadata = {
+export const metadata = createPageMetadata({
   title: 'Tooliyapa - Free Online PDF Tools | Merge, Split, Compress',
   description: 'Free, private, fast online PDF tools. Merge, split, compress, rotate, watermark and convert PDFs — all in your browser. No upload, no signup.',
-  alternates: { canonical: '/' },
-}
+  pathname: '/',
+})
 
 export default function Page() {
   return <HomePage />
