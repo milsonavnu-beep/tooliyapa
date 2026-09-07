@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { ChevronDown, Menu, Moon, Sun, X } from 'lucide-react'
 import { useTheme } from 'next-themes'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import ToolSearch from '@/components/tooliyapa/ToolSearch'
 import { PDF_TOOLS } from '@/lib/tools'
 
@@ -28,7 +28,16 @@ function ThemeToggle() {
 export default function Header() {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
-  useEffect(() => { setOpen(false) }, [pathname])
+  const pdfMenuRef = useRef(null)
+
+  useEffect(() => {
+    setOpen(false)
+    if (pdfMenuRef.current) pdfMenuRef.current.open = false
+  }, [pathname])
+
+  const closePdfMenu = () => {
+    if (pdfMenuRef.current) pdfMenuRef.current.open = false
+  }
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-slate-200/80 bg-white/90 backdrop-blur-xl dark:border-slate-800 dark:bg-slate-950/90">
@@ -40,10 +49,10 @@ export default function Header() {
 
         <nav aria-label="Primary navigation" className="hidden xl:flex items-center gap-1 text-sm font-medium text-slate-700 dark:text-slate-200">
           <Link href="/" className="rounded-lg px-3 py-2 transition hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 dark:hover:bg-slate-800">All Tools</Link>
-          <details className="group relative">
+          <details ref={pdfMenuRef} className="group relative">
             <summary className="flex cursor-pointer list-none items-center gap-1 rounded-lg px-3 py-2 transition hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 dark:hover:bg-slate-800">PDF Tools <ChevronDown className="h-3.5 w-3.5 transition group-open:rotate-180" /></summary>
             <div className="absolute left-1/2 top-full mt-3 grid w-[410px] -translate-x-1/2 grid-cols-2 gap-1 rounded-2xl border border-slate-200 bg-white p-2 shadow-xl dark:border-slate-700 dark:bg-slate-900">
-              {PDF_TOOLS.map((tool) => <Link key={tool.href} href={tool.href} className={`rounded-lg px-3 py-2 text-sm hover:bg-teal-50 hover:text-teal-800 dark:hover:bg-teal-950/50 ${pathname === tool.href ? 'bg-teal-50 text-teal-800 dark:bg-teal-950/50 dark:text-teal-200' : ''}`}>{tool.title}</Link>)}
+              {PDF_TOOLS.map((tool) => <Link key={tool.href} href={tool.href} onClick={closePdfMenu} className={`rounded-lg px-3 py-2 text-sm hover:bg-teal-50 hover:text-teal-800 dark:hover:bg-teal-950/50 ${pathname === tool.href ? 'bg-teal-50 text-teal-800 dark:bg-teal-950/50 dark:text-teal-200' : ''}`}>{tool.title}</Link>)}
             </div>
           </details>
           {FUTURE_CATEGORIES.map((label) => <span key={label} aria-disabled="true" aria-label={`${label}, coming soon`} title="Coming soon" className="cursor-default rounded-lg px-2.5 py-2 text-slate-500 dark:text-slate-500">{label}</span>)}
