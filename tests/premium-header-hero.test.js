@@ -54,4 +54,17 @@ describe('premium header and homepage hero', () => {
     expect(search).toContain('role="listbox"')
     expect(search).toContain('role="option"')
   })
+
+  it('clips only the decorative hero background so search results can escape', () => {
+    expect(home).not.toContain('relative isolate overflow-hidden border-b')
+    expect(home).toContain('pointer-events-none absolute inset-0 -z-10 overflow-hidden')
+  })
+
+  it('closes the desktop PDF menu after selection and pathname changes', () => {
+    expect(header).toContain('useRef')
+    expect(header).toContain('ref={pdfMenuRef}')
+    expect(header).toContain('onClick={closePdfMenu}')
+    expect(header).toContain('pdfMenuRef.current.open = false')
+    expect(header).toContain('[pathname]')
+  })
 })
