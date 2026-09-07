@@ -4,7 +4,7 @@ import { createPageMetadata } from '@/lib/site'
 const email = 'milsonavnu@gmail.com'
 
 export const metadata = createPageMetadata({
-  title: 'Contact Tooliyapa — Feedback and Support',
+  title: 'Contact and Support',
   description: 'Contact Tooliyapa by email about website feedback, technical problems, privacy, copyright concerns, corrections, or general questions.',
   pathname: '/contact',
 })

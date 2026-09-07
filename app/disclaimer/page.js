@@ -1,7 +1,7 @@
 import { InfoPage, InfoSection } from '@/components/tooliyapa/InfoPage'
 import { createPageMetadata } from '@/lib/site'
 
-export const metadata = createPageMetadata({ title: 'Disclaimer — Tooliyapa', description: 'Important information about reviewing Tooliyapa PDF output, retaining backups, file compatibility, and third-party services.', pathname: '/disclaimer' })
+export const metadata = createPageMetadata({ title: 'Disclaimer', description: 'Important information about reviewing Tooliyapa PDF output, retaining backups, file compatibility, and third-party services.', pathname: '/disclaimer' })
 
 export default function Page() {
   return (

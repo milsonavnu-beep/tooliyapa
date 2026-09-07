@@ -2,7 +2,7 @@ import { InfoPage, InfoSection, TextLink } from '@/components/tooliyapa/InfoPage
 import { createPageMetadata } from '@/lib/site'
 
 export const metadata = createPageMetadata({
-  title: 'Privacy Policy — Tooliyapa',
+  title: 'Privacy Policy',
   description: 'Read how Tooliyapa handles browser-side PDF processing, ordinary website requests, local storage, advertising, and third-party services.',
   pathname: '/privacy',
 })

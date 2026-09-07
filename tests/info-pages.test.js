@@ -5,6 +5,13 @@ import { PUBLIC_ROUTES, canonicalUrl } from '../lib/site.js'
 
 const root = process.cwd()
 const infoRoutes = ['/about', '/contact', '/privacy', '/terms', '/disclaimer']
+const renderedTitles = {
+  '/about': 'About Our PDF Tools | Tooliyapa',
+  '/contact': 'Contact and Support | Tooliyapa',
+  '/privacy': 'Privacy Policy | Tooliyapa',
+  '/terms': 'Terms of Use | Tooliyapa',
+  '/disclaimer': 'Disclaimer | Tooliyapa',
+}
 
 function pageSource(route) {
   return fs.readFileSync(path.join(root, `app${route}/page.js`), 'utf8')
@@ -25,6 +32,21 @@ describe('informational and trust pages', () => {
       expect(source).toContain(`pathname: '${route}'`)
       expect(source).not.toMatch(/noindex|index:\s*false|follow:\s*false/i)
       expect(source).not.toMatch(/www\.tooliyapa|http:\/\/|localhost|emergent/i)
+    }
+  })
+
+  it('composes clean titles with the global site-name suffix exactly once', () => {
+    const layout = fs.readFileSync(path.join(root, 'app/layout.js'), 'utf8')
+    const template = layout.match(/template:\s*'([^']+)'/)?.[1]
+
+    expect(template).toBe('%s | Tooliyapa')
+    for (const route of infoRoutes) {
+      const pageTitle = pageSource(route).match(/title:\s*'([^']+)'/)?.[1]
+      const renderedTitle = template.replace('%s', pageTitle)
+
+      expect(renderedTitle).toBe(renderedTitles[route])
+      expect(renderedTitle.match(/Tooliyapa/g)).toHaveLength(1)
+      expect(renderedTitle).not.toContain('Tooliyapa | Tooliyapa')
     }
   })
 
