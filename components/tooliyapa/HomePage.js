@@ -6,21 +6,34 @@ import { Card } from '@/components/ui/card'
 import {
   Combine, Minimize2, Scissors, RotateCw, Image as ImageIcon, FileImage,
   Hash, Type, Layers, Unlock, ShieldCheck, Cpu, Download, ArrowRight,
-  LayoutGrid, Zap,
+  LayoutGrid, Zap, FileText, Calculator, Files, ArrowLeftRight,
 } from 'lucide-react'
 import ToolSearch from '@/components/tooliyapa/ToolSearch'
+import { PDF_TOOLS } from '@/lib/tools'
 
-const TOOLS = [
-  { href: '/merge-pdf', title: 'Merge PDF', desc: 'Combine PDFs in your chosen whole-file order.', icon: Combine, iconBg: 'bg-teal-50 dark:bg-teal-950/30', iconColor: 'text-teal-700 dark:text-teal-400' },
-  { href: '/split-pdf', title: 'Split PDF', desc: 'Extract thumbnail-selected pages or make one PDF per page.', icon: Scissors, iconBg: 'bg-amber-50 dark:bg-amber-950/40', iconColor: 'text-amber-600' },
-  { href: '/compress-pdf', title: 'Compress PDF', desc: 'Optimize PDF structure losslessly without recompressing images.', icon: Minimize2, iconBg: 'bg-emerald-50 dark:bg-emerald-950/40', iconColor: 'text-emerald-600' },
-  { href: '/rotate-pdf', title: 'Rotate PDF', desc: 'Rotate every page or specified page numbers and ranges.', icon: RotateCw, iconBg: 'bg-blue-50 dark:bg-blue-950/40', iconColor: 'text-blue-600' },
-  { href: '/organize-pdf', title: 'Organize PDF', desc: 'Reorder, remove, and rotate individual pages.', icon: Layers, iconBg: 'bg-violet-50 dark:bg-violet-950/40', iconColor: 'text-violet-600' },
-  { href: '/jpg-to-pdf', title: 'JPG to PDF', desc: 'Arrange JPG, JPEG, or PNG images into one PDF.', icon: FileImage, iconBg: 'bg-pink-50 dark:bg-pink-950/40', iconColor: 'text-pink-600' },
-  { href: '/pdf-to-jpg', title: 'PDF to JPG', desc: 'Render every PDF page as a separate JPG image.', icon: ImageIcon, iconBg: 'bg-orange-50 dark:bg-orange-950/40', iconColor: 'text-orange-600' },
-  { href: '/page-numbers', title: 'Page Numbers', desc: 'Number every page in a choice of header or footer positions.', icon: Hash, iconBg: 'bg-cyan-50 dark:bg-cyan-950/40', iconColor: 'text-cyan-600' },
-  { href: '/watermark', title: 'Text Watermark', desc: 'Add the same customizable text watermark to every page.', icon: Type, iconBg: 'bg-fuchsia-50 dark:bg-fuchsia-950/40', iconColor: 'text-fuchsia-600' },
-  { href: '/unlock-pdf', title: 'Remove Restrictions', desc: 'Attempt to remove owner permissions from an already readable PDF.', icon: Unlock, iconBg: 'bg-slate-100 dark:bg-slate-800', iconColor: 'text-slate-700 dark:text-slate-300' },
+const TOOL_PRESENTATION = {
+  '/merge-pdf': { desc: 'Combine PDFs in your chosen whole-file order.', icon: Combine, iconBg: 'bg-teal-50 dark:bg-teal-950/30', iconColor: 'text-teal-700 dark:text-teal-400' },
+  '/split-pdf': { desc: 'Extract thumbnail-selected pages or make one PDF per page.', icon: Scissors, iconBg: 'bg-amber-50 dark:bg-amber-950/40', iconColor: 'text-amber-600' },
+  '/compress-pdf': { desc: 'Optimize PDF structure losslessly without recompressing images.', icon: Minimize2, iconBg: 'bg-emerald-50 dark:bg-emerald-950/40', iconColor: 'text-emerald-600' },
+  '/rotate-pdf': { desc: 'Rotate every page or specified page numbers and ranges.', icon: RotateCw, iconBg: 'bg-blue-50 dark:bg-blue-950/40', iconColor: 'text-blue-600' },
+  '/organize-pdf': { desc: 'Reorder, remove, and rotate individual pages.', icon: Layers, iconBg: 'bg-violet-50 dark:bg-violet-950/40', iconColor: 'text-violet-600' },
+  '/jpg-to-pdf': { desc: 'Arrange JPG, JPEG, or PNG images into one PDF.', icon: FileImage, iconBg: 'bg-pink-50 dark:bg-pink-950/40', iconColor: 'text-pink-600' },
+  '/pdf-to-jpg': { desc: 'Render every PDF page as a separate JPG image.', icon: ImageIcon, iconBg: 'bg-orange-50 dark:bg-orange-950/40', iconColor: 'text-orange-600' },
+  '/page-numbers': { desc: 'Number every page in a choice of header or footer positions.', icon: Hash, iconBg: 'bg-cyan-50 dark:bg-cyan-950/40', iconColor: 'text-cyan-600' },
+  '/watermark': { desc: 'Add the same customizable text watermark to every page.', icon: Type, iconBg: 'bg-fuchsia-50 dark:bg-fuchsia-950/40', iconColor: 'text-fuchsia-600' },
+  '/unlock-pdf': { desc: 'Attempt to remove owner permissions from an already readable PDF.', icon: Unlock, iconBg: 'bg-slate-100 dark:bg-slate-800', iconColor: 'text-slate-700 dark:text-slate-300' },
+}
+
+const TOOLS = PDF_TOOLS.map((tool) => ({ ...tool, ...TOOL_PRESENTATION[tool.href] }))
+const FEATURED_TOOL_HREFS = ['/merge-pdf', '/compress-pdf', '/organize-pdf', '/jpg-to-pdf', '/pdf-to-jpg', '/split-pdf']
+const FEATURED_TOOLS = FEATURED_TOOL_HREFS.map((href) => TOOLS.find((tool) => tool.href === href)).filter(Boolean)
+const MORE_TOOLS = TOOLS.filter((tool) => !FEATURED_TOOL_HREFS.includes(tool.href))
+
+const FUTURE_CATEGORIES = [
+  { title: 'Calculators', desc: 'Everyday finance, math, and planning calculators.', icon: Calculator, iconBg: 'bg-amber-50 dark:bg-amber-950/35', iconColor: 'text-amber-600 dark:text-amber-400' },
+  { title: 'Documents', desc: 'Practical tools for common document workflows.', icon: Files, iconBg: 'bg-blue-50 dark:bg-blue-950/35', iconColor: 'text-blue-600 dark:text-blue-400' },
+  { title: 'Text', desc: 'Focused utilities for writing and text cleanup.', icon: Type, iconBg: 'bg-violet-50 dark:bg-violet-950/35', iconColor: 'text-violet-600 dark:text-violet-400' },
+  { title: 'Converters', desc: 'Quick conversions for files, values, and formats.', icon: ArrowLeftRight, iconBg: 'bg-cyan-50 dark:bg-cyan-950/35', iconColor: 'text-cyan-600 dark:text-cyan-400' },
 ]
 
 const linkClass = 'font-medium text-teal-700 underline decoration-teal-200 underline-offset-4 transition hover:text-teal-800 hover:decoration-teal-500 dark:text-teal-400 dark:decoration-teal-900 dark:hover:text-teal-300'
@@ -69,23 +82,97 @@ export default function HomePage() {
       </section>
 
       <div className="container mx-auto px-4 py-12 sm:py-16">
-      <section id="tools" className="scroll-mt-24" aria-labelledby="tools-heading">
-        <h2 id="tools-heading" className="sr-only">Choose a PDF tool</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 max-w-6xl mx-auto">
-        {TOOLS.map((tool) => {
-          const Icon = tool.icon
-          return (
-            <Link key={tool.href} href={tool.href} aria-label={`${tool.title}: ${tool.desc}`}>
-              <Card className="group cursor-pointer p-5 border border-gray-200 dark:border-gray-800 hover:border-teal-300 dark:hover:border-teal-800 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 bg-white dark:bg-gray-900 h-full">
-                <div className={`w-12 h-12 rounded-xl ${tool.iconBg} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
-                  <Icon className={`w-6 h-6 ${tool.iconColor}`} />
-                </div>
-                <h3 className="text-base font-bold text-gray-900 dark:text-gray-100 mb-1">{tool.title}</h3>
-                <p className="text-xs text-gray-500 dark:text-gray-400 leading-snug">{tool.desc}</p>
-              </Card>
+      <section id="tools" className="scroll-mt-24" aria-labelledby="categories-heading">
+        <div className="mx-auto max-w-6xl">
+          <div className="max-w-2xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-teal-700 dark:text-teal-400">Tool discovery</p>
+            <h2 id="categories-heading" className="mt-2 text-2xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-3xl">Browse by category</h2>
+            <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-400">Start with the PDF tools available today. More Tooliyapa categories will appear here as they become ready to use.</p>
+          </div>
+
+          <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+            <Link href="#pdf-tools" className="group rounded-2xl border border-rose-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-rose-300 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2 dark:border-rose-950 dark:bg-slate-900 dark:hover:border-rose-800" aria-label={`PDF Tools, ${PDF_TOOLS.length} tools available`}>
+              <div className="flex items-start justify-between gap-3">
+                <span className="rounded-xl bg-rose-50 p-2.5 text-rose-600 dark:bg-rose-950/40 dark:text-rose-400"><FileText className="h-5 w-5" aria-hidden="true" /></span>
+                <span className="rounded-full bg-teal-50 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-teal-700 dark:bg-teal-950/50 dark:text-teal-300">Available now</span>
+              </div>
+              <h3 className="mt-4 text-base font-bold text-slate-900 dark:text-white">PDF Tools</h3>
+              <p className="mt-1 text-xs leading-5 text-slate-600 dark:text-slate-400">Merge, split, compress, organize, convert and prepare PDFs.</p>
+              <div className="mt-4 flex items-center justify-between gap-3 text-xs font-semibold text-slate-700 dark:text-slate-300">
+                <span>{PDF_TOOLS.length} tools available</span>
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+              </div>
             </Link>
-          )
-        })}
+
+            {FUTURE_CATEGORIES.map((category) => {
+              const Icon = category.icon
+              return (
+                <div key={category.title} aria-disabled="true" className="rounded-2xl border border-slate-200 bg-slate-50/70 p-5 dark:border-slate-800 dark:bg-slate-900/60">
+                  <div className="flex items-start justify-between gap-3">
+                    <span className={`rounded-xl p-2.5 ${category.iconBg} ${category.iconColor}`}><Icon className="h-5 w-5" aria-hidden="true" /></span>
+                    <span className="rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-slate-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-400">Coming soon</span>
+                  </div>
+                  <h3 className="mt-4 text-base font-bold text-slate-800 dark:text-slate-200">{category.title}</h3>
+                  <p className="mt-1 text-xs leading-5 text-slate-500 dark:text-slate-400">{category.desc}</p>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section id="pdf-tools" className="mx-auto mt-14 max-w-6xl scroll-mt-24" aria-labelledby="featured-tools-heading">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-teal-700 dark:text-teal-400">Available now</p>
+            <h2 id="featured-tools-heading" className="mt-2 text-2xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-3xl">Featured PDF tools</h2>
+            <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-400">Quick access to common PDF tasks, with every current Tooliyapa PDF tool still available below.</p>
+          </div>
+          <span className="text-sm font-medium text-slate-500 dark:text-slate-400">{PDF_TOOLS.length} tools available</span>
+        </div>
+
+        <div className="mt-7 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {FEATURED_TOOLS.map((tool) => {
+            const Icon = tool.icon
+            return (
+              <Link key={tool.href} href={tool.href} aria-label={`${tool.title}: ${tool.desc}`} className="group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2 rounded-2xl">
+                <Card className="h-full rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-200 group-hover:-translate-y-0.5 group-hover:border-teal-300 group-hover:shadow-md dark:border-slate-800 dark:bg-slate-900 dark:group-hover:border-teal-800">
+                  <div className="flex items-start gap-4">
+                    <span className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${tool.iconBg}`}><Icon className={`h-5 w-5 ${tool.iconColor}`} aria-hidden="true" /></span>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-start justify-between gap-3">
+                        <h3 className="text-base font-bold text-slate-900 dark:text-white">{tool.title}</h3>
+                        <ArrowRight className="mt-0.5 h-4 w-4 shrink-0 text-slate-400 transition-transform group-hover:translate-x-0.5 group-hover:text-teal-700 dark:group-hover:text-teal-400" aria-hidden="true" />
+                      </div>
+                      <p className="mt-1.5 text-xs leading-5 text-slate-600 dark:text-slate-400">{tool.desc}</p>
+                    </div>
+                  </div>
+                </Card>
+              </Link>
+            )
+          })}
+        </div>
+
+        <div className="mt-9 flex items-center gap-4">
+          <h3 className="shrink-0 text-sm font-bold text-slate-900 dark:text-white">More PDF tools</h3>
+          <div className="h-px flex-1 bg-slate-200 dark:bg-slate-800" />
+        </div>
+
+        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {MORE_TOOLS.map((tool) => {
+            const Icon = tool.icon
+            return (
+              <Link key={tool.href} href={tool.href} aria-label={`${tool.title}: ${tool.desc}`} className="group rounded-xl border border-slate-200 bg-white p-4 transition hover:-translate-y-0.5 hover:border-teal-300 hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-teal-800">
+                <div className="flex items-center gap-3">
+                  <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg ${tool.iconBg}`}><Icon className={`h-4 w-4 ${tool.iconColor}`} aria-hidden="true" /></span>
+                  <div className="min-w-0">
+                    <h4 className="text-sm font-semibold text-slate-900 dark:text-white">{tool.title}</h4>
+                    <p className="mt-0.5 line-clamp-2 text-[11px] leading-4 text-slate-500 dark:text-slate-400">{tool.desc}</p>
+                  </div>
+                </div>
+              </Link>
+            )
+          })}
         </div>
       </section>
 
