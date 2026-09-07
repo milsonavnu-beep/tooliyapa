@@ -9,7 +9,7 @@ import {
 import DiceLogo from '@/components/tooliyapa/DiceLogo'
 
 const TOOLS = [
-  { href: '/merge-pdf', title: 'Merge PDF', desc: 'Combine PDFs in your chosen whole-file order.', icon: Combine, iconBg: 'bg-red-50 dark:bg-red-950/40', iconColor: 'text-red-600' },
+  { href: '/merge-pdf', title: 'Merge PDF', desc: 'Combine PDFs in your chosen whole-file order.', icon: Combine, iconBg: 'bg-teal-50 dark:bg-teal-950/30', iconColor: 'text-teal-700 dark:text-teal-400' },
   { href: '/split-pdf', title: 'Split PDF', desc: 'Extract thumbnail-selected pages or make one PDF per page.', icon: Scissors, iconBg: 'bg-amber-50 dark:bg-amber-950/40', iconColor: 'text-amber-600' },
   { href: '/compress-pdf', title: 'Compress PDF', desc: 'Optimize PDF structure losslessly without recompressing images.', icon: Minimize2, iconBg: 'bg-emerald-50 dark:bg-emerald-950/40', iconColor: 'text-emerald-600' },
   { href: '/rotate-pdf', title: 'Rotate PDF', desc: 'Rotate every page or specified page numbers and ranges.', icon: RotateCw, iconBg: 'bg-blue-50 dark:bg-blue-950/40', iconColor: 'text-blue-600' },
@@ -21,7 +21,7 @@ const TOOLS = [
   { href: '/unlock-pdf', title: 'Remove Restrictions', desc: 'Attempt to remove owner permissions from an already readable PDF.', icon: Unlock, iconBg: 'bg-slate-100 dark:bg-slate-800', iconColor: 'text-slate-700 dark:text-slate-300' },
 ]
 
-const linkClass = 'font-medium text-red-700 underline decoration-red-200 underline-offset-4 transition hover:text-red-800 hover:decoration-red-500 dark:text-red-400 dark:decoration-red-900 dark:hover:text-red-300'
+const linkClass = 'font-medium text-teal-700 underline decoration-teal-200 underline-offset-4 transition hover:text-teal-800 hover:decoration-teal-500 dark:text-teal-400 dark:decoration-teal-900 dark:hover:text-teal-300'
 
 export default function HomePage() {
   return (
@@ -30,12 +30,12 @@ export default function HomePage() {
         <div className="flex justify-center mb-6">
           <DiceLogo size={88} />
         </div>
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 dark:bg-red-950/40 border border-red-100 dark:border-red-900 text-red-700 dark:text-red-400 text-xs font-medium mb-5">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-50 dark:bg-teal-950/30 border border-teal-100 dark:border-teal-900 text-teal-700 dark:text-teal-400 text-xs font-medium mb-5">
           <ShieldCheck className="w-3 h-3" aria-hidden="true" /> Browser-based PDF processing
         </div>
         <h1 id="homepage-heading" className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-gray-900 dark:text-gray-50">
           Simple PDF tools for
-          <span className="block bg-gradient-to-r from-red-600 to-rose-600 bg-clip-text text-transparent">everyday document tasks.</span>
+          <span className="block text-teal-700 dark:text-teal-400">everyday document tasks.</span>
         </h1>
         <p className="mt-5 text-lg leading-8 text-gray-600 dark:text-gray-400">Merge, split, organize, rotate, convert, number, watermark, and optimize PDF files with focused tools that run in your browser.</p>
       </section>
@@ -47,7 +47,7 @@ export default function HomePage() {
           const Icon = tool.icon
           return (
             <Link key={tool.href} href={tool.href} aria-label={`${tool.title}: ${tool.desc}`}>
-              <Card className="group cursor-pointer p-5 border border-gray-200 dark:border-gray-800 hover:border-red-300 dark:hover:border-red-700 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 bg-white dark:bg-gray-900 h-full">
+              <Card className="group cursor-pointer p-5 border border-gray-200 dark:border-gray-800 hover:border-teal-300 dark:hover:border-teal-800 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 bg-white dark:bg-gray-900 h-full">
                 <div className={`w-12 h-12 rounded-xl ${tool.iconBg} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
                   <Icon className={`w-6 h-6 ${tool.iconColor}`} />
                 </div>
@@ -85,10 +85,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mt-16 max-w-6xl mx-auto rounded-2xl border border-red-100 bg-red-50/70 p-6 sm:p-8 dark:border-red-950 dark:bg-red-950/20" aria-labelledby="processing-heading">
+      <section className="mt-16 max-w-6xl mx-auto rounded-2xl border border-teal-100 bg-teal-50/70 p-6 sm:p-8 dark:border-teal-950 dark:bg-teal-950/20" aria-labelledby="processing-heading">
         <div className="grid gap-8 lg:grid-cols-[1fr_1.3fr] lg:items-start">
           <div>
-            <Cpu className="h-8 w-8 text-red-600 dark:text-red-400" aria-hidden="true" />
+            <Cpu className="h-8 w-8 text-teal-700 dark:text-teal-400" aria-hidden="true" />
             <h2 id="processing-heading" className="mt-4 text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-100">How browser-based processing works</h2>
           </div>
           <div className="space-y-4 text-sm leading-6 text-gray-700 dark:text-gray-300">
@@ -110,7 +110,7 @@ export default function HomePage() {
             { title: 'What does a watermark do?', desc: 'Watermark adds visible text to every page. That marking is not document encryption, access control, DRM, or proof of ownership.' },
             { title: 'Which restrictions are supported?', desc: 'Restriction removal is an attempt for authorized, already readable PDFs with owner permissions. It is not open-password decryption, and results depend on the file.' },
           ].map((item) => (
-            <article key={item.title} className="border-l-2 border-red-200 pl-4 dark:border-red-900">
+            <article key={item.title} className="border-l-2 border-teal-200 pl-4 dark:border-teal-900">
               <h3 className="font-semibold text-gray-900 dark:text-gray-100">{item.title}</h3>
               <p className="mt-1 text-sm leading-6 text-gray-600 dark:text-gray-400">{item.desc}</p>
             </article>

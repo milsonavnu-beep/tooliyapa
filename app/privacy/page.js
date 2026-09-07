@@ -20,7 +20,7 @@ export default function Page() {
       <InfoSection title="8. Children's privacy"><p>Tooliyapa is a general-purpose document utility and is not directed specifically to children. If you believe a child has provided personal information through a communication with Tooliyapa, contact us so the concern can be reviewed.</p></InfoSection>
       <InfoSection title="9. External links"><p>Tooliyapa may link to third-party websites. Their privacy practices and content are controlled by their operators, so review their policies before providing information to them.</p></InfoSection>
       <InfoSection title="10. Changes to this policy"><p>This policy may change when Tooliyapa&apos;s features, providers, or practices change. The date at the top will be updated when revisions are published. Please review the current version periodically.</p></InfoSection>
-      <InfoSection title="11. Contact"><p>For privacy questions or concerns, email <a className="font-medium text-red-700 underline underline-offset-4 dark:text-red-400" href="mailto:milsonavnu@gmail.com">milsonavnu@gmail.com</a>.</p></InfoSection>
+      <InfoSection title="11. Contact"><p>For privacy questions or concerns, email <a className="font-medium text-teal-700 underline underline-offset-4 dark:text-teal-400" href="mailto:milsonavnu@gmail.com">milsonavnu@gmail.com</a>.</p></InfoSection>
     </InfoPage>
   )
 }

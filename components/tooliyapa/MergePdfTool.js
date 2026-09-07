@@ -23,7 +23,7 @@ function SortableFile({ id, file, idx, onRemove }) {
         <GripVertical className="w-5 h-5" />
       </button>
       <span className="text-xs font-bold text-gray-500 w-5 text-center">{idx + 1}</span>
-      <FileText className="w-5 h-5 text-red-600 shrink-0" />
+      <FileText className="w-5 h-5 text-teal-700 shrink-0" />
       <div className="flex-1 min-w-0">
         <p className="text-sm font-medium text-gray-900 dark:text-gray-100 truncate">{file.name}</p>
         <p className="text-xs text-gray-500 dark:text-gray-400">{formatBytes(file.size)}</p>
@@ -85,8 +85,8 @@ export default function MergePdfTool() {
   const reset = () => { setFiles([]); setMergedBlob(null); setProgress(0) }
 
   return (
-    <ToolShell icon={Combine} title="Merge PDF" accent="red" description="Drag files to reorder, then merge them into a single PDF — all in your browser.">
-      <div {...getRootProps()} className={`border-2 border-dashed rounded-2xl p-8 sm:p-12 text-center cursor-pointer bg-white dark:bg-gray-900 ${isDragActive ? 'border-red-500 bg-red-50 dark:bg-red-950/40' : 'border-gray-300 dark:border-gray-700 hover:border-red-400'}`}>
+    <ToolShell icon={Combine} title="Merge PDF" accent="teal" description="Drag files to reorder, then merge them into a single PDF — all in your browser.">
+      <div {...getRootProps()} className={`border-2 border-dashed rounded-2xl p-8 sm:p-12 text-center cursor-pointer bg-white dark:bg-gray-900 ${isDragActive ? 'border-teal-600 bg-teal-50 dark:bg-teal-950/30' : 'border-gray-300 dark:border-gray-700 hover:border-teal-500'}`}>
         <input {...getInputProps()} />
         <Upload className="w-10 h-10 mx-auto mb-3 text-gray-400" />
         <p className="font-semibold text-gray-700 dark:text-gray-200">{isDragActive ? 'Drop here…' : 'Drag & drop PDFs here, or click to browse'}</p>
@@ -110,7 +110,7 @@ export default function MergePdfTool() {
           {processing && (<div className="mt-5"><Progress value={progress} className="h-2" /><p className="text-xs text-gray-500 mt-2 text-center">Merging… {progress}%</p></div>)}
           <div className="mt-5 flex flex-col sm:flex-row gap-3">
             {!mergedBlob ? (
-              <Button onClick={handleMerge} disabled={processing || files.length < 2} className="flex-1 bg-red-600 hover:bg-red-700 text-white h-12 text-base">
+              <Button onClick={handleMerge} disabled={processing || files.length < 2} className="flex-1 bg-teal-700 hover:bg-teal-800 text-white h-12 text-base">
                 {processing ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Merging…</> : <><Combine className="w-5 h-5 mr-2" /> Merge {files.length} PDFs</>}
               </Button>
             ) : (
