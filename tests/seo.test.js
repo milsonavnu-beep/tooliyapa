@@ -22,6 +22,9 @@ describe('production SEO configuration', () => {
     expect(entries.every((entry) => !('lastModified' in entry))).toBe(true)
     expect(urls.every((url) => url.startsWith(`${SITE_URL}/`))).toBe(true)
     expect(urls.join('\n')).not.toMatch(/www\.|http:\/\/|localhost|emergent/i)
+    for (const route of ['/about', '/contact', '/privacy', '/terms', '/disclaimer']) {
+      expect(urls).toContain(canonicalUrl(route))
+    }
   })
 
   it('declares the canonical sitemap and does not block public crawling', () => {

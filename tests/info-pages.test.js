@@ -1,0 +1,55 @@
+import { describe, expect, it } from 'vitest'
+import fs from 'fs'
+import path from 'path'
+import { PUBLIC_ROUTES, canonicalUrl } from '../lib/site.js'
+
+const root = process.cwd()
+const infoRoutes = ['/about', '/contact', '/privacy', '/terms', '/disclaimer']
+
+function pageSource(route) {
+  return fs.readFileSync(path.join(root, `app${route}/page.js`), 'utf8')
+}
+
+describe('informational and trust pages', () => {
+  it('publishes every informational route in the central route inventory', () => {
+    for (const route of infoRoutes) {
+      expect(PUBLIC_ROUTES).toContain(route)
+      expect(canonicalUrl(route)).toBe(`https://tooliyapa.com${route}`)
+    }
+  })
+
+  it('uses the shared metadata helper once per page with no noindex or forbidden host', () => {
+    for (const route of infoRoutes) {
+      const source = pageSource(route)
+      expect(source.match(/createPageMetadata\s*\(/g)).toHaveLength(1)
+      expect(source).toContain(`pathname: '${route}'`)
+      expect(source).not.toMatch(/noindex|index:\s*false|follow:\s*false/i)
+      expect(source).not.toMatch(/www\.tooliyapa|http:\/\/|localhost|emergent/i)
+    }
+  })
+
+  it('links every required informational and legal destination from the footer', () => {
+    const markup = fs.readFileSync(path.join(root, 'components/tooliyapa/Footer.js'), 'utf8')
+    for (const route of ['/', ...infoRoutes]) expect(markup).toContain(`'${route}'`)
+    for (const label of ['Privacy Policy', 'Terms of Use', 'Disclaimer']) expect(markup).toContain(label)
+  })
+
+  it('uses only the approved public email and does not publish placeholder contact details', () => {
+    const source = infoRoutes.map(pageSource).join('\n')
+    const emails = source.match(/[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}/g) || []
+
+    expect(new Set(emails)).toEqual(new Set(['milsonavnu@gmail.com']))
+    expect(pageSource('/contact')).toContain('mailto:${email}')
+    expect(source).not.toMatch(/support@tooliyapa\.com|123 Main|Example (Street|Road)|registered office|phone number/i)
+  })
+
+  it('keeps one shared server-rendered H1 and semantic H2 sections', () => {
+    const layout = fs.readFileSync(path.join(root, 'components/tooliyapa/InfoPage.jsx'), 'utf8')
+    expect(layout.match(/<h1\b/g)).toHaveLength(1)
+    expect(layout.match(/<h2\b/g)).toHaveLength(1)
+    for (const route of infoRoutes) {
+      expect(pageSource(route)).toContain('<InfoPage')
+      expect(pageSource(route)).toContain('<InfoSection')
+    }
+  })
+})
