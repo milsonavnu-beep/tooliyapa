@@ -1,5 +1,5 @@
 import './globals.css'
-import Script from 'next/script'
+import AdSenseScript from '@/components/tooliyapa/AdSenseScript'
 import { Toaster } from '@/components/ui/sonner'
 import { ThemeProvider } from 'next-themes'
 import Header from '@/components/tooliyapa/Header'
@@ -37,12 +37,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       {/* Google AdSense — advertising network (separate from file processing) */}
-      <Script
-        async
-        strategy="afterInteractive"
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5475600467474553"
-        crossOrigin="anonymous"
-      />
+      <AdSenseScript />
 
       <body className="min-h-screen font-sans antialiased bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
