@@ -2,23 +2,13 @@ import { describe, expect, it } from 'vitest'
 import fs from 'fs'
 import path from 'path'
 import { PUBLIC_ROUTES, canonicalUrl, createPageMetadata } from '../lib/site.js'
+import { PDF_TOOLS } from '../lib/tools.js'
 
 const root = process.cwd()
 const pageSource = fs.readFileSync(path.join(root, 'app/page.js'), 'utf8')
 const homeSource = fs.readFileSync(path.join(root, 'components/tooliyapa/HomePage.js'), 'utf8')
 const layoutSource = fs.readFileSync(path.join(root, 'app/layout.js'), 'utf8')
-const toolRoutes = [
-  '/merge-pdf',
-  '/split-pdf',
-  '/compress-pdf',
-  '/rotate-pdf',
-  '/organize-pdf',
-  '/jpg-to-pdf',
-  '/pdf-to-jpg',
-  '/page-numbers',
-  '/watermark',
-  '/unlock-pdf',
-]
+const toolRoutes = PDF_TOOLS.map(({ href }) => href)
 
 describe('homepage content and metadata', () => {
   it('uses canonical page metadata with one brand mention in the composed title', () => {
@@ -50,27 +40,28 @@ describe('homepage content and metadata', () => {
     expect(homeSource).toContain('Practical tools, clear expectations')
   })
 
-  it('keeps all ten public PDF tools in the primary card grid', () => {
-    const toolsBlock = homeSource.match(/const TOOLS = \[([^]*?)\n\]/)?.[1] ?? ''
-    const cardRoutes = [...toolsBlock.matchAll(/href:\s*'([^']+)'/g)].map((match) => match[1])
+  it('keeps all ten public PDF tools in the registry-backed presentation', () => {
+    expect(PDF_TOOLS).toHaveLength(10)
+    expect(homeSource).toContain('const TOOLS = PDF_TOOLS.map')
+    expect(toolRoutes).toHaveLength(10)
 
-    expect(cardRoutes).toEqual(toolRoutes)
-    for (const route of cardRoutes) {
+    for (const route of toolRoutes) {
       expect(PUBLIC_ROUTES).toContain(route)
-      expect(homeSource).toContain(`href={tool.href}`)
+      expect(homeSource).toContain(`'${route}': {`)
     }
+    expect(homeSource).toContain('href={tool.href}')
   })
 
   it('describes limited tool behavior accurately', () => {
-    const toolsBlock = homeSource.match(/const TOOLS = \[([^]*?)\n\]/)?.[1] ?? ''
-    const splitCard = toolsBlock.match(/href:\s*'\/split-pdf'[^\n]+/)?.[0] ?? ''
-    const watermarkCard = toolsBlock.match(/href:\s*'\/watermark'[^\n]+/)?.[0] ?? ''
-    const restrictionsCard = toolsBlock.match(/href:\s*'\/unlock-pdf'[^\n]+/)?.[0] ?? ''
+    const presentationBlock = homeSource.match(/const TOOL_PRESENTATION = \{([^]*?)\n\}/)?.[1] ?? ''
+    const splitCard = presentationBlock.match(/'\/split-pdf':[^\n]+/)?.[0] ?? ''
+    const watermarkCard = presentationBlock.match(/'\/watermark':[^\n]+/)?.[0] ?? ''
+    const restrictionsCard = presentationBlock.match(/'\/unlock-pdf':[^\n]+/)?.[0] ?? ''
 
     expect(splitCard).toMatch(/thumbnail-selected pages|one PDF per page/i)
     expect(splitCard).not.toMatch(/typed|range/i)
     expect(watermarkCard).toMatch(/text watermark/i)
-    expect(homeSource).toMatch(/text-only workflow|Text Watermark|visible text/i)
+    expect(homeSource).toMatch(/Text Watermark|visible text/i)
     expect(restrictionsCard).toMatch(/attempt|owner permissions|already readable/i)
     expect(homeSource).toMatch(/does not guess passwords, crack encryption, or decrypt/i)
   })
