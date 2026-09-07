@@ -52,11 +52,11 @@ export function ToolLimitations({ items }) {
   )
 }
 
-export function PrivacyNote() {
+export function PrivacyNote({ fileDescription = 'PDF' }) {
   return (
     <ToolInfoSection title="File privacy" icon={LockKeyhole}>
-      <p>Your PDF is read and processed in your browser. The PDF file itself is not uploaded to Tooliyapa servers. When processing finishes, you download the new file directly from the browser.</p>
-      <p>This statement applies to the PDF-processing workflow; the site may still load ordinary site services or third-party scripts as described by the site&apos;s configuration.</p>
+      <p>Your {fileDescription} {fileDescription === 'PDF' ? 'is' : 'are'} read and processed in your browser. The selected {fileDescription} {fileDescription === 'PDF' ? 'is' : 'are'} not uploaded to Tooliyapa servers as part of that workflow. When processing finishes, you download the new file directly from the browser.</p>
+      <p>This statement applies to the file-processing workflow; the site may still load ordinary site services or third-party scripts as described by the site&apos;s configuration.</p>
     </ToolInfoSection>
   )
 }
