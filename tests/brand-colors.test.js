@@ -13,17 +13,17 @@ describe('teal interface color system', () => {
     expect(read('app/globals.css')).not.toContain('#dc2626')
   })
 
-  it('uses teal for shared brand UI while retaining semantic and logo reds', () => {
+  it('uses teal for shared brand UI while retaining semantic reds', () => {
     const header = read('components/tooliyapa/Header.js')
     const home = read('components/tooliyapa/HomePage.js')
     const info = read('components/tooliyapa/InfoPage.jsx')
 
-    expect(header).toContain('bg-teal-700 hover:bg-teal-800 text-white')
-    expect(home).toMatch(/bg-teal-50[^]*?Browser-based PDF processing/)
+    expect(header).toContain('focus-visible:ring-teal-600')
+    expect(home).toMatch(/bg-teal-50[^]*?Simple tools\. Real productivity\./)
     expect(home).toContain('text-teal-700 underline decoration-teal-200')
     expect(info).toContain('text-teal-700 underline decoration-teal-300')
 
-    expect(header).toContain('<span className="text-red-600">pa</span>')
+    expect(header).not.toContain('text-red-600')
     expect(read('components/tooliyapa/OrganizePdfTool.js')).toMatch(/bg-red-500\/90[^\n]+title="Delete page"/)
     expect(read('components/ui/toast.jsx')).toContain('group-[.destructive]:text-red-300')
   })
