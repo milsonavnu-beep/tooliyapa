@@ -167,7 +167,7 @@ export default function HomePage() {
                   <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg ${tool.iconBg}`}><Icon className={`h-4 w-4 ${tool.iconColor}`} aria-hidden="true" /></span>
                   <div className="min-w-0">
                     <h4 className="text-sm font-semibold text-slate-900 dark:text-white">{tool.title}</h4>
-                    <p className="mt-0.5 line-clamp-2 text-[11px] leading-4 text-slate-500 dark:text-slate-400">{tool.desc}</p>
+                    <p className="mt-0.5 text-[11px] leading-4 text-slate-500 dark:text-slate-400">{tool.desc}</p>
                   </div>
                 </div>
               </Link>

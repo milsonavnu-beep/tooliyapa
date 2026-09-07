@@ -16,10 +16,10 @@ function ThemeToggle() {
   const { theme, resolvedTheme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
   useEffect(() => setMounted(true), [])
-  if (!mounted) return <div className="h-10 w-10" />
+  if (!mounted) return <div className="h-11 w-11" />
   const isDark = (theme === 'system' ? resolvedTheme : theme) === 'dark'
   return (
-    <Button variant="ghost" size="icon" onClick={() => setTheme(isDark ? 'light' : 'dark')} aria-label={`Switch to ${isDark ? 'light' : 'dark'} theme`} className="h-10 w-10 rounded-xl focus-visible:ring-teal-600">
+    <Button variant="ghost" size="icon" onClick={() => setTheme(isDark ? 'light' : 'dark')} aria-label={`Switch to ${isDark ? 'light' : 'dark'} theme`} className="h-11 w-11 rounded-xl focus-visible:ring-teal-600">
       {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
     </Button>
   )
@@ -29,11 +29,24 @@ export default function Header() {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
   const pdfMenuRef = useRef(null)
+  const mobileMenuButtonRef = useRef(null)
 
   useEffect(() => {
     setOpen(false)
     if (pdfMenuRef.current) pdfMenuRef.current.open = false
   }, [pathname])
+
+  useEffect(() => {
+    if (!open) return undefined
+    const closeOnEscape = (event) => {
+      if (event.key === 'Escape') {
+        setOpen(false)
+        mobileMenuButtonRef.current?.focus()
+      }
+    }
+    document.addEventListener('keydown', closeOnEscape)
+    return () => document.removeEventListener('keydown', closeOnEscape)
+  }, [open])
 
   const closePdfMenu = () => {
     if (pdfMenuRef.current) pdfMenuRef.current.open = false
@@ -61,7 +74,7 @@ export default function Header() {
         <div className="hidden xl:flex w-[230px] shrink-0 items-center gap-2"><ToolSearch compact className="min-w-0 flex-1" /><ThemeToggle /></div>
         <div className="flex items-center gap-1 xl:hidden">
           <ThemeToggle />
-          <Button variant="ghost" size="icon" onClick={() => setOpen((value) => !value)} aria-expanded={open} aria-controls="mobile-navigation" aria-label={`${open ? 'Close' : 'Open'} navigation menu`} className="h-10 w-10 rounded-xl focus-visible:ring-teal-600">{open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}</Button>
+          <Button ref={mobileMenuButtonRef} variant="ghost" size="icon" onClick={() => setOpen((value) => !value)} aria-expanded={open} aria-controls="mobile-navigation" aria-label={`${open ? 'Close' : 'Open'} navigation menu`} className="h-11 w-11 rounded-xl focus-visible:ring-teal-600">{open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}</Button>
         </div>
       </div>
 
@@ -70,9 +83,9 @@ export default function Header() {
           <div className="mx-auto max-w-[1360px] px-4 py-4 sm:px-6">
             <ToolSearch compact className="mb-4" />
             <nav aria-label="Mobile navigation" className="grid grid-cols-2 gap-2 text-sm">
-              <Link href="/" className="rounded-lg bg-slate-50 px-3 py-2.5 font-medium dark:bg-slate-900">All Tools</Link>
-              {PDF_TOOLS.map((tool) => <Link key={tool.href} href={tool.href} className="rounded-lg px-3 py-2.5 text-slate-700 hover:bg-teal-50 dark:text-slate-200 dark:hover:bg-teal-950/40">{tool.title}</Link>)}
-              {FUTURE_CATEGORIES.map((label) => <span key={label} aria-disabled="true" aria-label={`${label}, coming soon`} className="rounded-lg px-3 py-2.5 text-slate-500">{label} <span className="block text-[10px] uppercase tracking-wide">Coming soon</span></span>)}
+              <Link href="/" className="flex min-h-11 items-center rounded-lg bg-slate-50 px-3 py-2.5 font-medium dark:bg-slate-900">All Tools</Link>
+              {PDF_TOOLS.map((tool) => <Link key={tool.href} href={tool.href} className="flex min-h-11 items-center rounded-lg px-3 py-2.5 text-slate-700 hover:bg-teal-50 dark:text-slate-200 dark:hover:bg-teal-950/40">{tool.title}</Link>)}
+              {FUTURE_CATEGORIES.map((label) => <span key={label} aria-disabled="true" aria-label={`${label}, coming soon`} className="flex min-h-11 flex-col justify-center rounded-lg px-3 py-2.5 text-slate-500">{label} <span className="block text-[10px] uppercase tracking-wide">Coming soon</span></span>)}
             </nav>
           </div>
         </div>

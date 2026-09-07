@@ -47,7 +47,7 @@ export default function ToolSearch({ compact = false, className = '' }) {
           if (event.key === 'ArrowUp' && results.length) { event.preventDefault(); setActive((value) => (value - 1 + results.length) % results.length) }
           if (event.key === 'Enter' && results.length) { event.preventDefault(); navigate(results[active]?.href || results[0].href) }
         }}
-        className={`w-full rounded-xl border border-slate-200 bg-white text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-teal-600 focus:ring-4 focus:ring-teal-600/10 dark:border-slate-700 dark:bg-slate-900 dark:text-white ${compact ? 'h-10 pl-9 pr-3 text-sm' : 'h-14 pl-11 pr-4 text-base shadow-sm'}`}
+        className={`w-full rounded-xl border border-slate-200 bg-white text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-teal-600 focus:ring-4 focus:ring-teal-600/10 dark:border-slate-700 dark:bg-slate-900 dark:text-white ${compact ? 'h-11 pl-9 pr-3 text-sm' : 'h-14 pl-11 pr-4 text-base shadow-sm'}`}
       />
       {open && query && (
         <div id={`${listId}-results`} role="listbox" className="absolute inset-x-0 top-full z-50 mt-2 overflow-hidden rounded-xl border border-slate-200 bg-white p-1.5 shadow-xl dark:border-slate-700 dark:bg-slate-900">
@@ -61,7 +61,7 @@ export default function ToolSearch({ compact = false, className = '' }) {
               onMouseDown={(event) => event.preventDefault()}
               onMouseEnter={() => setActive(index)}
               onClick={() => navigate(tool.href)}
-              className={`flex w-full items-center rounded-lg px-3 py-2 text-left text-sm font-medium outline-none ${index === active ? 'bg-teal-50 text-teal-800 dark:bg-teal-950/60 dark:text-teal-200' : 'text-slate-700 dark:text-slate-200'}`}
+              className={`flex min-h-11 w-full items-center rounded-lg px-3 py-2.5 text-left text-sm font-medium outline-none ${index === active ? 'bg-teal-50 text-teal-800 dark:bg-teal-950/60 dark:text-teal-200' : 'text-slate-700 dark:text-slate-200'}`}
             >
               {tool.title}
             </button>
