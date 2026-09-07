@@ -2,8 +2,8 @@ import HomePage from '@/components/tooliyapa/HomePage'
 import { createPageMetadata } from '@/lib/site'
 
 export const metadata = createPageMetadata({
-  title: 'Tooliyapa - Free Online PDF Tools | Merge, Split, Compress',
-  description: 'Free, private, fast online PDF tools. Merge, split, compress, rotate, watermark and convert PDFs — all in your browser. No upload, no signup.',
+  title: 'Free Online PDF Tools',
+  description: 'Merge, split, organize, rotate, convert, number, watermark, and optimize PDFs with browser-based tools. Files are processed locally in your browser.',
   pathname: '/',
 })
 
