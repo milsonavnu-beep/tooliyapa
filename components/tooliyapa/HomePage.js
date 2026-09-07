@@ -28,9 +28,11 @@ const linkClass = 'font-medium text-teal-700 underline decoration-teal-200 under
 export default function HomePage() {
   return (
     <div>
-      <section className="relative isolate overflow-hidden border-b border-slate-100 bg-[#fdfdfb] dark:border-slate-800 dark:bg-slate-950" aria-labelledby="homepage-heading">
-        <div aria-hidden="true" className="absolute -left-40 top-12 -z-10 h-96 w-96 rounded-full bg-cyan-100/45 blur-3xl dark:bg-teal-950/30" />
-        <div aria-hidden="true" className="absolute -right-36 bottom-0 -z-10 h-[28rem] w-[28rem] rounded-full bg-teal-100/40 blur-3xl dark:bg-teal-950/30" />
+      <section className="relative isolate border-b border-slate-100 bg-[#fdfdfb] dark:border-slate-800 dark:bg-slate-950" aria-labelledby="homepage-heading">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+          <div className="absolute -left-40 top-12 h-96 w-96 rounded-full bg-cyan-100/45 blur-3xl dark:bg-teal-950/30" />
+          <div className="absolute -right-36 bottom-0 h-[28rem] w-[28rem] rounded-full bg-teal-100/40 blur-3xl dark:bg-teal-950/30" />
+        </div>
         <div className="mx-auto grid max-w-[1360px] items-center gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[1.08fr_0.92fr] lg:gap-8 lg:py-20">
           <div className="max-w-2xl">
             <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-teal-100 bg-teal-50/90 px-3 py-1.5 text-xs font-semibold text-teal-800 dark:border-teal-900 dark:bg-teal-950/50 dark:text-teal-300">
