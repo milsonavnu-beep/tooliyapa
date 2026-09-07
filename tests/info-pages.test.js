@@ -74,4 +74,22 @@ describe('informational and trust pages', () => {
       expect(pageSource(route)).toContain('<InfoSection')
     }
   })
+
+  it('publishes a cautious, complete Google advertising disclosure', () => {
+    const privacy = pageSource('/privacy')
+
+    expect(privacy).toMatch(/Google as a third-party advertising vendor/i)
+    expect(privacy).toMatch(/advertising cookies/i)
+    expect(privacy).toMatch(/visits to Tooliyapa and\s*\/\s*or other websites/i)
+    expect(privacy).toMatch(/manage or opt out of personalized Google advertising/i)
+    expect(privacy).toContain('https://www.google.com/settings/ads')
+    expect(privacy).toContain('https://policies.google.com/privacy')
+    expect(privacy).toMatch(/PDFs and images selected[\s\S]*processed in your browser/i)
+    expect(privacy).toMatch(/normal page requests, advertising, and other website services operate separately/i)
+
+    expect(privacy).not.toMatch(/(?:guaranteed|guarantees) (?:GDPR|legal) compliance/i)
+    expect(privacy).not.toMatch(/Tooliyapa (?:currently )?(?:displays|provides|uses) (?:a )?(?:Google-certified )?(?:CMP|consent banner)/i)
+    expect(privacy).not.toMatch(/zero tracking|nothing leaves (?:your|the) browser/i)
+    expect(privacy).not.toMatch(/(?:^|[.!?]\s*)(?:all ads|all advertising) (?:are|is) personalized/i)
+  })
 })
