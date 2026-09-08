@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 import fs from 'fs'
 import path from 'path'
 import { PDF_TOOLS } from '../lib/tools.js'
+import { AVAILABLE_CALCULATORS } from '../lib/calculators.js'
 
 const root = process.cwd()
 const home = fs.readFileSync(path.join(root, 'components/tooliyapa/HomePage.js'), 'utf8')
@@ -18,18 +19,20 @@ describe('homepage category and tool discovery', () => {
     }
   })
 
-  it('makes PDF Tools the only active category and derives its count from the registry', () => {
+  it('makes PDF Tools and Calculators active while deriving their counts from registries', () => {
     expect(home).toContain('Browse by category')
     expect(home).toContain('href="#pdf-tools"')
     expect(home).toContain('{PDF_TOOLS.length} tools available')
     expect(home).toContain('Available now')
 
-    for (const label of ['Calculators', 'Documents', 'Text', 'Converters']) {
+    expect(home).toContain('href="/calculators"')
+    expect(home).toContain('{AVAILABLE_CALCULATORS.length} tool available')
+    for (const label of ['Documents', 'Text', 'Converters']) {
       expect(home).toContain(`title: '${label}'`)
     }
     expect(home).toContain('aria-disabled="true"')
     expect(home).toContain('Coming soon')
-    expect(home).not.toMatch(/href=["'{`]\/(calculators?|documents?|text|converters?)/i)
+    expect(home).not.toMatch(/href=["'{`]\/(documents?|text|converters?)/i)
   })
 
   it('preserves the hero destination and approved branding assets', () => {

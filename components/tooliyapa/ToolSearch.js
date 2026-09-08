@@ -4,6 +4,9 @@ import { useId, useMemo, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Search } from 'lucide-react'
 import { PDF_TOOLS } from '@/lib/tools'
+import { AVAILABLE_CALCULATORS } from '@/lib/calculators'
+
+const SEARCHABLE_TOOLS = [...PDF_TOOLS, ...AVAILABLE_CALCULATORS]
 
 export default function ToolSearch({ compact = false, className = '' }) {
   const router = useRouter()
@@ -14,7 +17,7 @@ export default function ToolSearch({ compact = false, className = '' }) {
   const results = useMemo(() => {
     const terms = query.toLowerCase().trim().split(/\s+/).filter(Boolean)
     if (!terms.length) return []
-    return PDF_TOOLS.filter((tool) => terms.every((term) => `${tool.title} ${tool.keywords}`.toLowerCase().includes(term)))
+    return SEARCHABLE_TOOLS.filter((tool) => terms.every((term) => `${tool.title} ${tool.keywords}`.toLowerCase().includes(term)))
   }, [query])
 
   const navigate = (href) => {

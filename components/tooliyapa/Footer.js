@@ -4,7 +4,7 @@ import Link from 'next/link'
 const linkGroups = [
   {
     title: 'Explore',
-    links: [['Home', '/'], ['All tools', '/#tools'], ['PDF tools', '/#pdf-tools'], ['About', '/about'], ['Contact', '/contact']],
+    links: [['Home', '/'], ['All tools', '/#tools'], ['PDF tools', '/#pdf-tools'], ['Calculators', '/calculators'], ['About', '/about'], ['Contact', '/contact']],
   },
   {
     title: 'PDF tools',

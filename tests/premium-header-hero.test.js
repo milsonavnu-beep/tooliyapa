@@ -39,12 +39,14 @@ describe('premium header and homepage hero', () => {
     expect(header).toContain("import { PDF_TOOLS } from '@/lib/tools'")
   })
 
-  it('does not introduce routes for future category labels', () => {
-    for (const label of ['Calculators', 'Documents', 'Text', 'Converters']) {
+  it('activates calculators without routes for the remaining future category labels', () => {
+    for (const label of ['Documents', 'Text', 'Converters']) {
       expect(header).toContain(label)
     }
-    expect(header).not.toMatch(/href=["'{`]\/(calculators?|documents?|text|converters?)/i)
-    expect(PUBLIC_ROUTES).not.toEqual(expect.arrayContaining(['/calculators', '/documents', '/text', '/converters']))
+    expect(header).toContain('href="/calculators"')
+    expect(header).not.toMatch(/href=["'{`]\/(documents?|text|converters?)/i)
+    expect(PUBLIC_ROUTES).toContain('/calculators')
+    expect(PUBLIC_ROUTES).not.toEqual(expect.arrayContaining(['/documents', '/text', '/converters']))
   })
 
   it('keeps search accessible and keyboard operable', () => {
