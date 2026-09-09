@@ -5,12 +5,15 @@ import { PUBLIC_ROUTES } from '../lib/site.js'
 const read = (path) => fs.readFileSync(path, 'utf8')
 
 describe('calculator discovery and content', () => {
-  it('publishes the percentage and loan calculators', () => {
-    expect(PUBLIC_ROUTES).toEqual(expect.arrayContaining(['/calculators', '/calculators/percentage', '/calculators/loan']))
-    expect(CALCULATOR_TOOLS).toHaveLength(2)
-    expect(AVAILABLE_CALCULATORS.map(({ id }) => id)).toEqual(['percentage', 'loan'])
-    expect(AVAILABLE_CALCULATORS[0]).toMatchObject({ id: 'percentage', title: 'Percentage Calculator', href: '/calculators/percentage', available: true })
-    expect(AVAILABLE_CALCULATORS[1]).toMatchObject({ id: 'loan', title: 'Loan / EMI Calculator', href: '/calculators/loan', available: true })
+  it('publishes every available calculator through a public route', () => {
+    expect(CALCULATOR_TOOLS.length).toBeGreaterThanOrEqual(3)
+    expect(AVAILABLE_CALCULATORS.length).toBe(CALCULATOR_TOOLS.filter(({ available }) => available).length)
+    for (const calculator of AVAILABLE_CALCULATORS) {
+      expect(calculator.href.startsWith('/calculators/')).toBe(true)
+      expect(PUBLIC_ROUTES).toContain(calculator.href)
+      expect(fs.existsSync(`app${calculator.href}/page.js`)).toBe(true)
+    }
+    expect(AVAILABLE_CALCULATORS.map(({ id }) => id)).toEqual(expect.arrayContaining(['percentage', 'loan', 'interest']))
   })
 
   it('integrates calculator discovery without removing PDF search', () => {
