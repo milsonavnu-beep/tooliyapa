@@ -51,6 +51,22 @@ describe('percentage formulas', () => {
     expect(() => calculatePercentOf(Number.MAX_VALUE, Number.MAX_VALUE)).toThrow(/non-finite/)
     expect(formatCalculatorNumber(0.1 + 0.2)).toBe('0.3')
     expect(formatCalculatorNumber(30)).toBe('30')
+    expect(formatCalculatorNumber(12.5)).toBe('12.5')
+    expect(formatCalculatorNumber(1500)).toBe('1,500')
     expect(formatCalculatorNumber(0.0000001)).toBe('0.0000001')
+    expect(formatCalculatorNumber(-0)).toBe('0')
+
+    const smallest = formatCalculatorNumber(Number.MIN_VALUE)
+    expect(smallest).not.toBe('0')
+    expect(smallest).toMatch(/e-324$/)
+
+    const tinyNegative = formatCalculatorNumber(-1e-200)
+    expect(tinyNegative).toMatch(/^-.*e-200$/)
+
+    const huge = formatCalculatorNumber(1e308)
+    expect(huge).toMatch(/e\+308$/)
+    expect(huge.length).toBeLessThan(20)
+
+    for (const invalid of [NaN, Infinity, -Infinity]) expect(() => formatCalculatorNumber(invalid)).toThrow(/finite number/)
   })
 })
