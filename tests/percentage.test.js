@@ -1,0 +1,72 @@
+import { describe, expect, it } from 'vitest'
+import { applyPercentageChange, calculatePercentageChange, calculatePercentOf, calculateWhatPercent, formatCalculatorNumber } from '../lib/percentage.js'
+
+describe('percentage formulas', () => {
+  it('calculates percentages of numbers including zero, negative and decimals', () => {
+    expect(calculatePercentOf(20, 150)).toBe(30)
+    expect(calculatePercentOf(0, 150)).toBe(0)
+    expect(calculatePercentOf(100, 150)).toBe(150)
+    expect(calculatePercentOf(-20, 150)).toBe(-30)
+    expect(calculatePercentOf(12.5, 12.4)).toBeCloseTo(1.55)
+    expect(calculatePercentOf(2, 1e308)).toBeCloseTo(2e306)
+    expect(Number.isFinite(calculatePercentOf(2, 1e308))).toBe(true)
+    expect(calculatePercentOf(1e308, 1e-308)).toBeCloseTo(0.01)
+    expect(calculatePercentOf(1e-308, 1e308)).toBeCloseTo(0.01)
+    expect(calculatePercentOf(0, 1e308)).toBe(0)
+    expect(calculatePercentOf(1e308, 0)).toBe(0)
+  })
+  it('calculates what percent and rejects a zero whole', () => {
+    expect(calculateWhatPercent(45, 300)).toBe(15)
+    expect(calculateWhatPercent(0, 300)).toBe(0)
+    expect(calculateWhatPercent(1.5, -3)).toBe(-50)
+    expect(calculateWhatPercent(1e308, 1e308)).toBe(100)
+    expect(calculateWhatPercent(Number.MIN_VALUE, 100)).toBe(Number.MIN_VALUE)
+    expect(() => calculateWhatPercent(2, 0)).toThrow(/must not be zero/)
+    expect(() => calculateWhatPercent(Number.MAX_VALUE, Number.MIN_VALUE)).toThrow(/non-finite/)
+  })
+  it('classifies change values while enforcing a positive start', () => {
+    expect(calculatePercentageChange(50, 75)).toBe(50)
+    expect(calculatePercentageChange(100, 75)).toBe(-25)
+    expect(calculatePercentageChange(100, 100)).toBe(0)
+    expect(calculatePercentageChange(2.5, 3)).toBeCloseTo(20)
+    expect(calculatePercentageChange(1e308, -1e308)).toBe(-200)
+    expect(calculatePercentageChange(1e308, 1e308)).toBe(0)
+    expect(() => calculatePercentageChange(0, 1)).toThrow(/greater than zero/)
+    expect(() => calculatePercentageChange(-1, 1)).toThrow(/greater than zero/)
+  })
+  it('applies increases and decreases', () => {
+    expect(applyPercentageChange(200, 12.5, 'increase')).toBe(225)
+    expect(applyPercentageChange(200, 12.5, 'decrease')).toBe(175)
+    expect(applyPercentageChange(10.5, 150, 'decrease')).toBe(-5.25)
+    expect(applyPercentageChange(1e308, 50, 'increase')).toBe(1.5e308)
+    expect(applyPercentageChange(1e-308, 1e308, 'increase')).toBeCloseTo(0.01)
+    expect(() => applyPercentageChange(1, -1, 'increase')).toThrow(/zero or greater/)
+    expect(() => applyPercentageChange(Number.MAX_VALUE, 100, 'increase')).toThrow(/non-finite/)
+  })
+  it('rejects invalid and non-finite values and formats floating point output', () => {
+    for (const invalid of [NaN, Infinity, -Infinity, '20', null]) expect(() => calculatePercentOf(invalid, 2)).toThrow(/finite number/)
+    expect(() => calculateWhatPercent(1, Infinity)).toThrow(/finite number/)
+    expect(() => calculatePercentageChange(1, NaN)).toThrow(/finite number/)
+    expect(() => applyPercentageChange(Infinity, 1, 'increase')).toThrow(/finite number/)
+    expect(() => calculatePercentOf(Number.MAX_VALUE, Number.MAX_VALUE)).toThrow(/non-finite/)
+    expect(formatCalculatorNumber(0.1 + 0.2)).toBe('0.3')
+    expect(formatCalculatorNumber(30)).toBe('30')
+    expect(formatCalculatorNumber(12.5)).toBe('12.5')
+    expect(formatCalculatorNumber(1500)).toBe('1,500')
+    expect(formatCalculatorNumber(0.0000001)).toBe('0.0000001')
+    expect(formatCalculatorNumber(-0)).toBe('0')
+
+    const smallest = formatCalculatorNumber(Number.MIN_VALUE)
+    expect(smallest).not.toBe('0')
+    expect(smallest).toMatch(/e-324$/)
+
+    const tinyNegative = formatCalculatorNumber(-1e-200)
+    expect(tinyNegative).toMatch(/^-.*e-200$/)
+
+    const huge = formatCalculatorNumber(1e308)
+    expect(huge).toMatch(/e\+308$/)
+    expect(huge.length).toBeLessThan(20)
+
+    for (const invalid of [NaN, Infinity, -Infinity]) expect(() => formatCalculatorNumber(invalid)).toThrow(/finite number/)
+  })
+})

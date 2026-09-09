@@ -10,6 +10,7 @@ import {
 } from 'lucide-react'
 import ToolSearch from '@/components/tooliyapa/ToolSearch'
 import { PDF_TOOLS } from '@/lib/tools'
+import { AVAILABLE_CALCULATORS } from '@/lib/calculators'
 
 const TOOL_PRESENTATION = {
   '/merge-pdf': { desc: 'Combine PDFs in your chosen whole-file order.', icon: Combine, iconBg: 'bg-teal-50 dark:bg-teal-950/30', iconColor: 'text-teal-700 dark:text-teal-400' },
@@ -30,7 +31,6 @@ const FEATURED_TOOLS = FEATURED_TOOL_HREFS.map((href) => TOOLS.find((tool) => to
 const MORE_TOOLS = TOOLS.filter((tool) => !FEATURED_TOOL_HREFS.includes(tool.href))
 
 const FUTURE_CATEGORIES = [
-  { title: 'Calculators', desc: 'Everyday finance, math, and planning calculators.', icon: Calculator, iconBg: 'bg-amber-50 dark:bg-amber-950/35', iconColor: 'text-amber-600 dark:text-amber-400' },
   { title: 'Documents', desc: 'Practical tools for common document workflows.', icon: Files, iconBg: 'bg-blue-50 dark:bg-blue-950/35', iconColor: 'text-blue-600 dark:text-blue-400' },
   { title: 'Text', desc: 'Focused utilities for writing and text cleanup.', icon: Type, iconBg: 'bg-violet-50 dark:bg-violet-950/35', iconColor: 'text-violet-600 dark:text-violet-400' },
   { title: 'Converters', desc: 'Quick conversions for files, values, and formats.', icon: ArrowLeftRight, iconBg: 'bg-cyan-50 dark:bg-cyan-950/35', iconColor: 'text-cyan-600 dark:text-cyan-400' },
@@ -57,7 +57,7 @@ export default function HomePage() {
             <p className="mt-6 max-w-xl text-base leading-7 text-slate-600 dark:text-slate-300 sm:text-lg">Tooliyapa brings together PDF tools, calculators, Word/Excel tools, converters, and text utilities in one fast, browser-based workspace.</p>
             <div className="mt-7 max-w-xl">
               <ToolSearch />
-              <p className="mt-2 pl-1 text-xs text-slate-500 dark:text-slate-400">Try “merge PDF” or “calculator” — search currently shows available PDF tools.</p>
+              <p className="mt-2 pl-1 text-xs text-slate-500 dark:text-slate-400">Try “merge PDF” or “percentage” — search shows available Tooliyapa tools.</p>
             </div>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <Link href="#tools" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-900 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-teal-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2 dark:bg-white dark:text-slate-950 dark:hover:bg-teal-300">Explore all tools <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
@@ -102,6 +102,11 @@ export default function HomePage() {
                 <span>{PDF_TOOLS.length} tools available</span>
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
               </div>
+            </Link>
+
+            <Link href="/calculators" className="group rounded-2xl border border-amber-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-amber-300 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 dark:border-amber-950 dark:bg-slate-900 dark:hover:border-amber-800" aria-label="Calculators, 1 tool available">
+              <div className="flex items-start justify-between gap-3"><span className="rounded-xl bg-amber-50 p-2.5 text-amber-600 dark:bg-amber-950/35 dark:text-amber-400"><Calculator className="h-5 w-5" aria-hidden="true" /></span><span className="rounded-full bg-teal-50 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-teal-700 dark:bg-teal-950/50 dark:text-teal-300">Available now</span></div>
+              <h3 className="mt-4 text-base font-bold text-slate-900 dark:text-white">Calculators</h3><p className="mt-1 text-xs leading-5 text-slate-600 dark:text-slate-400">Everyday finance, math, and planning calculators.</p><div className="mt-4 flex items-center justify-between gap-3 text-xs font-semibold text-slate-700 dark:text-slate-300"><span>{AVAILABLE_CALCULATORS.length} tool available</span><ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" /></div>
             </Link>
 
             {FUTURE_CATEGORIES.map((category) => {
