@@ -5,6 +5,7 @@ import sitemap from '../app/sitemap.js'
 import { PUBLIC_ROUTES, SITE_URL, canonicalUrl, createPageMetadata } from '../lib/site.js'
 import { MORE_CALCULATOR_PAGES } from '../lib/more-calculator-pages.js'
 import { CONVERTER_PAGES } from '../lib/converters.js'
+import { DOCUMENT_PAGES } from '../lib/document-tools.js'
 
 const root = process.cwd()
 
@@ -13,6 +14,8 @@ function sharedMetadataPathname(source) {
   if (calculatorId) return MORE_CALCULATOR_PAGES[calculatorId]?.pathname
   const converterId = source.match(/converterMetadata\('([^']+)'\)/)?.[1]
   if (converterId) return CONVERTER_PAGES[converterId]?.pathname
+  const documentId = source.match(/documentMetadata\('([^']+)'\)/)?.[1]
+  if (documentId) return DOCUMENT_PAGES[documentId]?.href
   return null
 }
 
@@ -31,7 +34,7 @@ describe('production SEO configuration', () => {
     expect(entries.every((entry) => !('lastModified' in entry))).toBe(true)
     expect(urls.every((url) => url.startsWith(`${SITE_URL}/`))).toBe(true)
     expect(urls.join('\n')).not.toMatch(/www\.|http:\/\/|localhost|emergent/i)
-    for (const route of ['/about', '/contact', '/privacy', '/terms', '/disclaimer', '/third-party-notices']) expect(urls).toContain(canonicalUrl(route))
+    for (const route of ['/documents', '/about', '/contact', '/privacy', '/terms', '/disclaimer', '/third-party-notices']) expect(urls).toContain(canonicalUrl(route))
   })
 
   it('declares the canonical sitemap and does not block public crawling', () => {

@@ -16,14 +16,15 @@ describe('footer and lower homepage', () => {
     expect(footer).not.toMatch(/DiceLogo|Popular PDF tools/)
   })
 
-  it('keeps the PDF footer links real while allowing active calculator and converter categories', () => {
+  it('keeps the PDF footer links real and exposes every active category', () => {
     for (const route of ['/merge-pdf','/compress-pdf','/organize-pdf','/jpg-to-pdf','/pdf-to-jpg','/split-pdf']) {
       expect(footer).toContain(`'${route}'`)
       expect(toolRoutes.has(route)).toBe(true)
     }
     expect(footer).toContain("['Calculators','/calculators']")
     expect(footer).toContain("['Converters','/converters']")
-    expect(footer).not.toMatch(/href=["']\/(?:documents?|text)/i)
+    expect(footer).toContain("['Documents','/documents']")
+    expect(footer).not.toMatch(/href=["']\/text/i)
   })
 
   it('retains navigation, informational, legal, and attribution destinations', () => {
@@ -36,13 +37,13 @@ describe('footer and lower homepage', () => {
     for (const comparison of ['Merge or organize?', 'Split or organize?', 'Rotate or organize?', 'What does compression change?', 'What does a watermark do?', 'Which restrictions are supported?']) expect(home).toContain(comparison)
   })
 
-  it('scopes privacy language to implemented workflows and retains qualifications', () => {
-    expect(home).toMatch(/Selected PDF files[\s\S]*not uploaded to Tooliyapa servers[\s\S]*PDF-processing workflow/)
+  it('scopes privacy language to implemented browser-side workflows and retains qualifications', () => {
+    expect(home).toMatch(/Selected PDF and document files[\s\S]*stay local/i)
     expect(home).toMatch(/Calculator and converter inputs are processed in the browser/)
     expect(home).toMatch(/Speed and capacity still depend on your device and browser/)
     expect(home).toMatch(/third-party scripts are separate from tool calculations/i)
     expect(home).toContain('href="/privacy"')
-    expect(footer).toMatch(/Selected PDF files[\s\S]*PDF-processing workflow/)
+    expect(footer).toMatch(/PDF and document files[\s\S]*processed in your browser/i)
   })
 
   it('keeps approved upper-page assets and avoids fabricated social proof', () => {
