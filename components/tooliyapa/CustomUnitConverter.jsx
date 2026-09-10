@@ -1,0 +1,12 @@
+'use client'
+
+import { useState } from 'react'
+import { Actions, CalculatorLayout, Field, ResultPanel } from '@/components/tooliyapa/FormPrimitives'
+import { formatConverted } from '@/lib/converter-units'
+
+export default function CustomUnitConverter() {
+  const initial={value:'',factor:'',fromName:'source units',toName:'target units'}; const[v,setV]=useState(initial);const[error,setError]=useState('');const[answer,setAnswer]=useState(null)
+  const update=(key,value)=>{setV((c)=>({...c,[key]:value}));setError('');setAnswer(null)}; const reset=()=>{setV(initial);setError('');setAnswer(null)}
+  const submit=(e)=>{e.preventDefault();try{const value=Number(v.value);const factor=Number(v.factor);if(!Number.isFinite(value))throw new TypeError('Value must be a finite number.');if(!Number.isFinite(factor)||factor<=0)throw new RangeError('Conversion factor must be a finite number greater than 0.');const result=value*factor;if(!Number.isFinite(result))throw new RangeError('Converted result is outside the supported numeric range.');setAnswer({result,reverse:1/factor});setError('')}catch(err){setAnswer(null);setError(err.message)}}
+  return <CalculatorLayout result={<ResultPanel title="Custom conversion" primary={answer?`${formatConverted(answer.result)} ${v.toName||'target units'}`:''} items={answer?[{label:'Rule',value:`1 ${v.fromName||'source unit'} = ${formatConverted(Number(v.factor))} ${v.toName||'target units'}`},{label:'Reverse factor',value:`1 ${v.toName||'target unit'} = ${formatConverted(answer.reverse)} ${v.fromName||'source units'}`}]:[]} note="Use this tool only when the relationship between the two units is linear and can be represented by one multiplication factor." />}><form onSubmit={submit} className="space-y-5"><Field id="custom-value" label="Value to convert" value={v.value} onChange={(value)=>update('value',value)} /><Field id="custom-factor" label="Factor: 1 source unit equals how many target units?" value={v.factor} onChange={(value)=>update('factor',value)} /><div className="grid gap-4 sm:grid-cols-2"><Field id="custom-from-name" label="Source unit name" value={v.fromName} onChange={(value)=>update('fromName',value)} inputMode="text"/><Field id="custom-to-name" label="Target unit name" value={v.toName} onChange={(value)=>update('toName',value)} inputMode="text"/></div>{error&&<p role="alert" className="text-sm font-medium text-red-700 dark:text-red-400">{error}</p>}<Actions submitLabel="Convert" onReset={reset}/></form></CalculatorLayout>
+}
