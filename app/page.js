@@ -2,8 +2,8 @@ import HomePage from '@/components/tooliyapa/HomePage'
 import { createPageMetadata } from '@/lib/site'
 
 export const metadata = createPageMetadata({
-  title: 'Free Online Tools — PDF, Calculators & Converters',
-  description: 'Use free browser-based PDF tools, calculators, and converters for everyday document, math, finance, unit, encoding, and productivity tasks.',
+  title: 'Free Online Tools — PDF, Documents, Calculators & Converters',
+  description: 'Use free browser-based PDF tools, document converters and inspectors, calculators, and converters for everyday productivity tasks.',
   pathname: '/',
 })
 
