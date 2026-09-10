@@ -1,50 +1,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-const linkGroups = [
-  {
-    title: 'Explore',
-    links: [['Home', '/'], ['All tools', '/#tools'], ['PDF tools', '/#pdf-tools'], ['Calculators', '/calculators'], ['About', '/about'], ['Contact', '/contact']],
-  },
-  {
-    title: 'PDF tools',
-    links: [['Merge PDF', '/merge-pdf'], ['Compress PDF', '/compress-pdf'], ['Organize PDF', '/organize-pdf'], ['JPG to PDF', '/jpg-to-pdf'], ['PDF to JPG', '/pdf-to-jpg'], ['Split PDF', '/split-pdf']],
-  },
-  {
-    title: 'Legal',
-    links: [['Privacy Policy', '/privacy'], ['Terms of Use', '/terms'], ['Disclaimer', '/disclaimer']],
-  },
+const linkGroups=[
+  {title:'Explore',links:[['Home','/'],['All tools','/#tools'],['PDF tools','/#pdf-tools'],['Calculators','/calculators'],['Converters','/converters'],['About','/about'],['Contact','/contact']]},
+  {title:'PDF tools',links:[['Merge PDF','/merge-pdf'],['Compress PDF','/compress-pdf'],['Organize PDF','/organize-pdf'],['JPG to PDF','/jpg-to-pdf'],['PDF to JPG','/pdf-to-jpg'],['Split PDF','/split-pdf']]},
+  {title:'Legal',links:[['Privacy Policy','/privacy'],['Terms of Use','/terms'],['Disclaimer','/disclaimer'],['Third-party notices','/third-party-notices']]},
 ]
+const footerLinkClass='inline-flex rounded-sm text-slate-300 transition hover:text-teal-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:ring-offset-4 focus-visible:ring-offset-slate-900'
 
-const footerLinkClass = 'inline-flex rounded-sm text-slate-300 transition hover:text-teal-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:ring-offset-4 focus-visible:ring-offset-slate-900'
-
-export default function Footer() {
-  return (
-    <footer className="mt-20 border-t border-slate-700/70 bg-slate-900 text-slate-300" aria-label="Site footer">
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-14 lg:px-8">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.7fr_0.8fr_1fr_0.8fr] lg:gap-12">
-          <div className="max-w-sm sm:col-span-2 lg:col-span-1">
-            <Link href="/" className="inline-flex rounded-xl bg-[#fdfdfb] px-3 py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:ring-offset-4 focus-visible:ring-offset-slate-900" aria-label="Tooliyapa home">
-              <Image src="/branding/tooliyapa_logo_primary.png" alt="Tooliyapa" width={1254} height={1254} className="h-auto w-40" sizes="160px" />
-            </Link>
-            <p className="mt-5 max-w-xs text-sm leading-6 text-slate-400">Practical browser-based tools for everyday document and productivity tasks. Tooliyapa is growing with more useful categories over time.</p>
-          </div>
-
-          {linkGroups.map(({ title, links }) => (
-            <nav key={title} aria-label={`${title} footer links`}>
-              <h2 className="text-xs font-semibold uppercase tracking-[0.16em] text-white">{title}</h2>
-              <ul className="mt-5 space-y-3 text-sm">
-                {links.map(([label, href]) => <li key={href}><Link className={footerLinkClass} href={href}>{label}</Link></li>)}
-              </ul>
-            </nav>
-          ))}
-        </div>
-
-        <div className="mt-12 border-t border-slate-700/80 pt-6 text-xs leading-5 text-slate-400 sm:flex sm:items-start sm:justify-between sm:gap-10">
-          <p className="shrink-0">&copy; {new Date().getFullYear()} Tooliyapa</p>
-          <p className="mt-3 max-w-2xl sm:mt-0 sm:text-right">Selected PDF files are processed in your browser and are not uploaded to Tooliyapa servers as part of the PDF-processing workflow.</p>
-        </div>
-      </div>
-    </footer>
-  )
-}
+export default function Footer(){return <footer className="mt-20 border-t border-slate-700/70 bg-slate-900 text-slate-300" aria-label="Site footer"><div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-14 lg:px-8"><div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.7fr_0.8fr_1fr_0.8fr] lg:gap-12"><div className="max-w-sm sm:col-span-2 lg:col-span-1"><Link href="/" className="inline-flex rounded-xl bg-[#fdfdfb] px-3 py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:ring-offset-4 focus-visible:ring-offset-slate-900" aria-label="Tooliyapa home"><Image src="/branding/tooliyapa_logo_primary.png" alt="Tooliyapa" width={1254} height={1254} className="h-auto w-40" sizes="160px"/></Link><p className="mt-5 max-w-xs text-sm leading-6 text-slate-400">Practical browser-based tools for PDFs, calculations, conversions, and everyday productivity tasks.</p></div>{linkGroups.map(({title,links})=><nav key={title} aria-label={`${title} footer links`}><h2 className="text-xs font-semibold uppercase tracking-[0.16em] text-white">{title}</h2><ul className="mt-5 space-y-3 text-sm">{links.map(([label,href])=><li key={href}><Link className={footerLinkClass} href={href}>{label}</Link></li>)}</ul></nav>)}</div><div className="mt-12 border-t border-slate-700/80 pt-6 text-xs leading-5 text-slate-400 sm:flex sm:items-start sm:justify-between sm:gap-10"><p className="shrink-0">&copy; {new Date().getFullYear()} Tooliyapa</p><p className="mt-3 max-w-2xl sm:mt-0 sm:text-right">Selected PDF files are processed in your browser and are not uploaded to Tooliyapa servers as part of the PDF-processing workflow. Calculator and converter values are processed in the browser.</p></div></div></footer>}

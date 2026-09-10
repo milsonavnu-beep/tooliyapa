@@ -1,0 +1,11 @@
+import { createPageMetadata } from '@/lib/site'
+
+export const metadata = createPageMetadata({
+  title: 'Third-Party Notices',
+  description: 'Open-source license notices and attribution for third-party software and reference implementations used by Tooliyapa.',
+  pathname: '/third-party-notices',
+})
+
+export default function Page() {
+  return <main className="mx-auto max-w-4xl px-4 py-12 sm:px-6"><h1 className="text-3xl font-bold text-slate-900 dark:text-white">Third-Party Notices</h1><p className="mt-4 leading-7 text-slate-600 dark:text-slate-300">Tooliyapa includes independently written implementations that were informed by, compared against, or adapted from concepts, formulas, and unit definitions in the open-source CalcSuite project. Where CalcSuite code or substantial portions are reused or adapted, its MIT notice is preserved here.</p><section className="mt-10 rounded-2xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900"><h2 className="text-2xl font-bold text-slate-900 dark:text-white">CalcSuite</h2><p className="mt-3 text-slate-600 dark:text-slate-300">Copyright (c) 2026 Kazi Tajkir Hossen</p><pre className="mt-5 whitespace-pre-wrap rounded-xl bg-slate-50 p-4 text-sm leading-6 text-slate-700 dark:bg-slate-950 dark:text-slate-300">{`MIT License\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.`}</pre></section></main>
+}

@@ -1,0 +1,19 @@
+import { describe, expect, it } from 'vitest'
+import { calculateBaseArithmetic, calculateGcdLcm, generateRandomNumbers, scientificCalculate, solveQuadratic } from '../lib/math-extra.js'
+import { calculateDiscount, calculateTax } from '../lib/finance-extra.js'
+import { calculateBmi, calculateBmr, calculateIdealWeight } from '../lib/health-calculators.js'
+import { calculateAge, calculateCountdown, calculateDateDifference, calculateTimeDuration } from '../lib/date-calculators.js'
+import { calculateGpa } from '../lib/gpa.js'
+
+describe('extended calculator engines',()=>{
+  it('handles scientific operations and guards invalid domains',()=>{expect(scientificCalculate({operation:'sin',x:30,angleUnit:'deg'})).toBeCloseTo(0.5,12);expect(scientificCalculate({operation:'factorial',x:5})).toBe(120);expect(()=>scientificCalculate({operation:'sqrt',x:-1})).toThrow(/non-negative/)})
+  it('calculates GCF and LCM exactly',()=>{const result=calculateGcdLcm('18, 24 30');expect(result.gcd).toBe(6n);expect(result.lcm).toBe(360n)})
+  it('solves real and complex quadratics',()=>{const real=solveQuadratic(1,-3,2);expect(real.kind).toBe('real');expect(real.roots.sort((a,b)=>a-b)).toEqual([1,2]);const complex=solveQuadratic(1,0,1);expect(complex.kind).toBe('complex');expect(complex.real).toBe(0);expect(complex.imaginary).toBe(1)})
+  it('performs exact base arithmetic',()=>{expect(calculateBaseArithmetic('A','5',16,'add').formatted).toBe('F');const division=calculateBaseArithmetic('10','3',10,'divide');expect(division.formatted).toBe('3');expect(division.remainderFormatted).toBe('1')})
+  it('supports deterministic random-number tests and range validation',()=>{const values=[0,0.5,0.999];let index=0;const result=generateRandomNumbers({min:1,max:3,count:3,integers:true,unique:true,rng:()=>values[index++]});expect(result).toEqual([1,2,3]);expect(()=>generateRandomNumbers({min:1,max:2,count:3,integers:true,unique:true})).toThrow(/too small/)})
+  it('calculates discount and tax in both directions',()=>{expect(calculateDiscount(100,20)).toEqual({price:100,percent:20,savings:20,salePrice:80});const add=calculateTax(100,20,'add');expect(add.tax).toBe(20);expect(add.gross).toBe(120);const extract=calculateTax(120,20,'extract');expect(extract.net).toBeCloseTo(100,12);expect(extract.tax).toBeCloseTo(20,12)})
+  it('calculates BMI, adult BMR, and historical weight formulas with limits',()=>{expect(calculateBmi(70,175).bmi).toBeCloseTo(22.857142857,8);const bmr=calculateBmr({sex:'male',age:30,weightKg:70,heightCm:175,activity:'moderate'});expect(bmr.bmr).toBeCloseTo(1648.75,8);expect(bmr.tdee).toBeCloseTo(2555.5625,8);const ideal=calculateIdealWeight(175,'male');expect(ideal.formulas.Devine).toBeGreaterThan(60);expect(()=>calculateBmr({sex:'male',age:12,weightKg:40,heightCm:150})).toThrow(/adult estimate/)})
+  it('handles leap-day age and date differences without average month lengths',()=>{const leap=calculateAge('2000-02-29','2024-02-29');expect(leap).toMatchObject({years:24,months:0,days:0});const nonLeap=calculateAge('2000-02-29','2023-02-28');expect(nonLeap).toMatchObject({years:23,months:0,days:0});const diff=calculateDateDifference('2024-01-01','2024-01-15');expect(diff.totalDays).toBe(14);expect(diff.weeks).toBe(2)})
+  it('calculates countdowns and time durations from explicit timestamps',()=>{const countdown=calculateCountdown('2030-01-02T00:00:00.000Z',new Date('2030-01-01T00:00:00.000Z'));expect(countdown.days).toBe(1);const duration=calculateTimeDuration('2030-01-01T00:00:00.000Z','2030-01-02T06:30:00.000Z');expect(duration.totalHours).toBe(30.5);expect(duration).toMatchObject({days:1,hours:6,minutes:30})})
+  it('calculates a credit-weighted GPA on a configurable scale',()=>{const result=calculateGpa([{points:4,credits:3},{points:3,credits:1}],4);expect(result.gpa).toBe(3.75);expect(result.totalCredits).toBe(4);expect(()=>calculateGpa([{points:5,credits:3}],4)).toThrow(/from 0 to 4/)})
+})

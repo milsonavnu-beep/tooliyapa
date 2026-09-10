@@ -9,45 +9,38 @@ const home = fs.readFileSync(path.join(root, 'components/tooliyapa/HomePage.js')
 const header = fs.readFileSync(path.join(root, 'components/tooliyapa/Header.js'), 'utf8')
 const toolRoutes = new Set(PDF_TOOLS.map(({ href }) => href))
 
-describe('Task 8C footer and lower homepage', () => {
+describe('footer and lower homepage', () => {
   it('uses the approved image logo and removes the legacy footer brand treatment', () => {
     expect(footer).toContain("import Image from 'next/image'")
     expect(footer).toContain('src="/branding/tooliyapa_logo_primary.png"')
     expect(footer).not.toMatch(/DiceLogo|Popular PDF tools/)
   })
 
-  it('links only to real PDF tools and does not add future-category routes', () => {
-    const pdfGroup = footer.match(/title: 'PDF tools',[\s\S]*?\n  },/)?.[0] ?? ''
-    const routes = [...pdfGroup.matchAll(/\['[^']+', '([^']+)'\]/g)].map((match) => match[1])
-
-    expect(routes).toHaveLength(6)
-    for (const route of routes) expect(toolRoutes.has(route)).toBe(true)
-    expect(footer).not.toMatch(/href=["']\/(?:calculators?|documents?|text|converters?)/i)
+  it('keeps the PDF footer links real while allowing active calculator and converter categories', () => {
+    for (const route of ['/merge-pdf','/compress-pdf','/organize-pdf','/jpg-to-pdf','/pdf-to-jpg','/split-pdf']) {
+      expect(footer).toContain(`'${route}'`)
+      expect(toolRoutes.has(route)).toBe(true)
+    }
+    expect(footer).toContain("['Calculators','/calculators']")
+    expect(footer).toContain("['Converters','/converters']")
+    expect(footer).not.toMatch(/href=["']\/(?:documents?|text)/i)
   })
 
-  it('retains navigation, informational, and legal destinations', () => {
-    for (const route of ['/', '/#tools', '/#pdf-tools', '/about', '/contact', '/privacy', '/terms', '/disclaimer']) {
-      expect(footer).toContain(`'${route}'`)
-    }
+  it('retains navigation, informational, legal, and attribution destinations', () => {
+    for (const route of ['/', '/#tools', '/#pdf-tools', '/about', '/contact', '/privacy', '/terms', '/disclaimer', '/third-party-notices']) expect(footer).toContain(`'${route}'`)
   })
 
   it('keeps all lower-page headings and substantive workflow comparisons visible', () => {
-    for (const heading of ['What you can do with Tooliyapa', 'How browser-based processing works', 'Choose the right PDF tool', 'Practical tools, clear expectations']) {
-      expect(home).toContain(heading)
-    }
-    for (const workflow of ['Combine and organize', 'Convert documents and images', 'Prepare a finished PDF', 'Work with owner permissions']) {
-      expect(home).toContain(workflow)
-    }
-    for (const comparison of ['Merge or organize?', 'Split or organize?', 'Rotate or organize?', 'What does compression change?', 'What does a watermark do?', 'Which restrictions are supported?']) {
-      expect(home).toContain(comparison)
-    }
+    for (const heading of ['What you can do with Tooliyapa', 'How browser-based processing works', 'Choose the right PDF tool', 'Practical tools, clear expectations']) expect(home).toContain(heading)
+    for (const workflow of ['Combine and organize', 'Convert documents and images', 'Prepare a finished PDF', 'Work with owner permissions']) expect(home).toContain(workflow)
+    for (const comparison of ['Merge or organize?', 'Split or organize?', 'Rotate or organize?', 'What does compression change?', 'What does a watermark do?', 'Which restrictions are supported?']) expect(home).toContain(comparison)
   })
 
-  it('scopes privacy language to implemented PDF workflows and retains qualifications', () => {
+  it('scopes privacy language to implemented workflows and retains qualifications', () => {
     expect(home).toMatch(/Selected PDF files[\s\S]*not uploaded to Tooliyapa servers[\s\S]*PDF-processing workflow/)
-    expect(home).toMatch(/device, available memory, and browser/)
-    expect(home).toMatch(/large scan or a PDF with complex pages[\s\S]*fail/)
-    expect(home).toMatch(/third-party scripts are separate from PDF-file processing/)
+    expect(home).toMatch(/Calculator and converter inputs are processed in the browser/)
+    expect(home).toMatch(/Speed and capacity still depend on your device and browser/)
+    expect(home).toMatch(/third-party scripts are separate from tool calculations/i)
     expect(home).toContain('href="/privacy"')
     expect(footer).toMatch(/Selected PDF files[\s\S]*PDF-processing workflow/)
   })

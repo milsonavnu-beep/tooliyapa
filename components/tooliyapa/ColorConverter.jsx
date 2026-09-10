@@ -1,0 +1,14 @@
+'use client'
+
+import { useState } from 'react'
+import { Actions, CalculatorLayout, Field, ResultPanel, Segmented } from '@/components/tooliyapa/FormPrimitives'
+import { convertColor, parseHexColor } from '@/lib/color-converter'
+import { formatNumber } from '@/lib/math-extra'
+
+export default function ColorConverter(){
+  const initial={mode:'rgb',r:'15',g:'118',b:'110',hex:'#0F766E'};const[v,setV]=useState(initial);const[error,setError]=useState('');const[answer,setAnswer]=useState(()=>convertColor(15,118,110))
+  const update=(key,value)=>{setV((c)=>({...c,[key]:value}));setError('');setAnswer(null)};const reset=()=>{setV(initial);setError('');setAnswer(convertColor(15,118,110))}
+  const submit=(e)=>{e.preventDefault();try{const rgb=v.mode==='rgb'?{r:v.r,g:v.g,b:v.b}:parseHexColor(v.hex);const result=convertColor(rgb.r,rgb.g,rgb.b);setAnswer(result);setError('')}catch(err){setAnswer(null);setError(err.message)}}
+  const items=answer?[{label:'HEX',value:answer.hex},{label:'RGB',value:`rgb(${answer.rgb.r}, ${answer.rgb.g}, ${answer.rgb.b})`},{label:'HSL',value:`hsl(${formatNumber(answer.hsl.h,6)}°, ${formatNumber(answer.hsl.s,6)}%, ${formatNumber(answer.hsl.l,6)}%)`},{label:'HSV',value:`hsv(${formatNumber(answer.hsv.h,6)}°, ${formatNumber(answer.hsv.s,6)}%, ${formatNumber(answer.hsv.v,6)}%)`},{label:'CMYK',value:`${formatNumber(answer.cmyk.c,6)}%, ${formatNumber(answer.cmyk.m,6)}%, ${formatNumber(answer.cmyk.y,6)}%, ${formatNumber(answer.cmyk.k,6)}%`}]:[]
+  return <CalculatorLayout result={<div className="space-y-4"><ResultPanel title="Color conversion" primary={answer?.hex||''} items={items} note="CMYK is a mathematical conversion from RGB; real print color depends on profiles, inks, paper, and device calibration."/>{answer&&<div className="h-28 rounded-2xl border border-slate-200 shadow-inner dark:border-slate-800" style={{backgroundColor:answer.hex}} aria-label={`Color swatch ${answer.hex}`}/>}</div>}><form onSubmit={submit} className="space-y-5"><Segmented label="Input format" value={v.mode} onChange={(value)=>update('mode',value)} options={[{value:'rgb',label:'RGB'},{value:'hex',label:'HEX'}]}/>{v.mode==='rgb'?<div className="grid gap-4 sm:grid-cols-3"><Field id="color-r" label="Red (0–255)" value={v.r} onChange={(value)=>update('r',value)}/><Field id="color-g" label="Green (0–255)" value={v.g} onChange={(value)=>update('g',value)}/><Field id="color-b" label="Blue (0–255)" value={v.b} onChange={(value)=>update('b',value)}/></div>:<Field id="color-hex" label="HEX color" value={v.hex} onChange={(value)=>update('hex',value)} inputMode="text" hint="Examples: #0F766E or #ABC"/>}{error&&<p role="alert" className="text-sm font-medium text-red-700 dark:text-red-400">{error}</p>}<Actions submitLabel="Convert color" onReset={reset}/></form></CalculatorLayout>
+}
