@@ -6,8 +6,9 @@ import { Search } from 'lucide-react'
 import { PDF_TOOLS } from '@/lib/tools'
 import { AVAILABLE_CALCULATORS } from '@/lib/calculators'
 import { AVAILABLE_CONVERTERS } from '@/lib/converters'
+import { AVAILABLE_DOCUMENT_TOOLS } from '@/lib/document-tools'
 
-const SEARCHABLE_TOOLS = [...PDF_TOOLS, ...AVAILABLE_CALCULATORS, ...AVAILABLE_CONVERTERS]
+const SEARCHABLE_TOOLS = [...PDF_TOOLS, ...AVAILABLE_CALCULATORS, ...AVAILABLE_CONVERTERS, ...AVAILABLE_DOCUMENT_TOOLS]
 
 export default function ToolSearch({ compact = false, className = '' }) {
   const router = useRouter(); const listId = useId(); const [query,setQuery]=useState(''); const [open,setOpen]=useState(false); const [active,setActive]=useState(0)
